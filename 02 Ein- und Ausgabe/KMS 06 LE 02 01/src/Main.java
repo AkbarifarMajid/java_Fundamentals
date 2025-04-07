@@ -7,11 +7,11 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
         //Vorname abrufen
-        System.out.println("Biite geben Sie Ihre Name ein: ");
+        System.out.println("Biite geben Sie Ihren Name ein: ");
         String vorname = scan.nextLine();
 
         //Nachname Abrufen
-        System.out.println("Biite geben Sie Ihre Nachname ein: ");
+        System.out.println("Biite geben Sie Ihren Nachname ein: ");
         String nachname = scan.nextLine();
 
         //Info Anzeigen
