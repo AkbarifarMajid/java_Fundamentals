@@ -15,7 +15,7 @@ public class Main {
         String nachname = scan.nextLine();
 
         //Info Anzeigen
-        System.out.printf("meine Name ist %s %s und ich habe java lernen angefangen ! \n", vorname , nachname );
+        System.out.printf("Meine Name ist %s %s und ich habe java lernen angefangen ! \n", vorname , nachname );
 
         //Scanner ausschlißen
         scan.close();
