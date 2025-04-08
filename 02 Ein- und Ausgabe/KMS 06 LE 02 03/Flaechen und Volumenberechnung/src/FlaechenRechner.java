@@ -31,7 +31,7 @@ public class FlaechenRechner {
 
     //----- Methode zur Berechnung der Fläche eines Rechtecks und des Volumens eines Quaders
     public static void rechneRechteck(String auswahl) {
-        System.out.println("\n--------------- Ihre Auswahl ist Rechteck (Quader)  ----------");
+        System.out.println("\n--------------- Ihre Auswahl ist Rechteck und Quader  ----------");
         double laengeRechteck = readWert("Bitte geben Sie die länge ein (Rechteck): ");
         double breiteRechteck = readWert("Bitte geben Sie die Breite ein (Rechteck): ");
         double hoeheRechteck = readWert("Bitte geben Sie die Höhe Quader ein : ");
@@ -46,7 +46,7 @@ public class FlaechenRechner {
 
     //----- Methode zur Berechnung der Fläche eines Dreieck und des Volumens eines Prismas
     public static void rechneDreieck(String auswahl){
-        System.out.println("\n--------------- Ihre Auswahl ist Gleichseitiges Dreieck (Prisma)  ----------");
+        System.out.println("\n--------------- Ihre Auswahl ist Gleichseitiges Dreieck und Prisma  ----------");
 
         double seitLanaengeDreieck = readWert("Bitte geben Sie die Seitenlänge gleichseitigen Dreiecks ein (Dreieck): ");
         double hoehePrisma = readWert("Bitte geben Sie die Höhe Prismas ein : ");
@@ -61,7 +61,7 @@ public class FlaechenRechner {
 
     //----- Methode zur Berechnung der Fläche eines Kreis und des Volumens eines Zylinders
     public static void rechneKreis(String auswahl){
-        System.out.println("\n--------------- Ihre Auswahl ist Kreis (Zylinder)  ----------");
+        System.out.println("\n--------------- Ihre Auswahl ist Kreis und Zylinder ----------");
         double lengeRadius = readWert("Bitte geben Sie den Radius des Kreises ein (Kreis): ");
         double hoeheZylinder = readWert("Bitte geben Sie die Höhe Zylinder ein: ");
 
