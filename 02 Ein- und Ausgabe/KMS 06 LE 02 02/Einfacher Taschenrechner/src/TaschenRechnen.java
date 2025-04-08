@@ -4,23 +4,6 @@ public class TaschenRechnen {
 
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
-
-        // Eingabe der ersten Zahl, des Operators und der zweiten Zahl durch den Benutzer
-        double zahl1 = leseZahl("Bitte geben Sie erste Nummer ein.: ");
-        char operator = leseOperator("Bitte wählen Sie Ihren Operator ein (+, -, *, /): ");
-        double zahl2 = leseZahl("Bitte geben Sie die zweite Zahl ein: ");
-
-
-        double result = berechne(zahl1, zahl2, operator);
-
-        if (!Double.isNaN(result)) {
-            System.out.printf("%.2f %c %.2f = %.2f ",zahl1,operator,zahl2,result);
-        }
-
-        sc.close();
-    }//End main
-
     // Fragt den Benutzer nach einer Zahl und gibt diese als double zurück
     public static double leseZahl(String frage) {
         System.out.print(frage);
@@ -43,17 +26,31 @@ public class TaschenRechnen {
             case '*':
                 return zahl1 * zahl2;
             case '/':
-                if(zahl2 !=0) {
-                    return zahl1 / zahl2;
-                }else {
-                    System.out.println("Division durch Null ist nicht erlaubt. ");
-                    return Double.NaN;
-                }
+                return zahl1 / zahl2;
             default:
-                System.out.println("Sie dürfen einen dieser ' + - * / ' operator auswählen.");
-                return Double.NaN;
+                System.out.println("Bitte + - * oder / eingeben.");
+                System.exit(0);
+                return 0;
         }
     }
 
+    public static void main(String[] args) {
+
+        // Eingabe der ersten Zahl, des Operators und der zweiten Zahl durch den Benutzer
+        double zahl1 = leseZahl("Bitte geben Sie erste Nummer ein.: ");
+        char operator = leseOperator("Bitte wählen Sie Ihren Operator ein (+, -, *, /): ");
+        double zahl2 = leseZahl("Bitte geben Sie die zweite Zahl ein: ");
+
+        if (operator == '/' && zahl2 == 0) {
+            System.out.println("Division durch Null ist nicht erlaubt.");
+            sc.close();
+            return;
+        }
+
+        double result = berechne(zahl1, zahl2, operator);
+
+        System.out.printf("%.2f %c %.2f = %.2f ",zahl1,operator,zahl2,result);
+        sc.close();
+    }//End main
 
 }
