@@ -1,4 +1,3 @@
-import java.lang.foreign.SymbolLookup;
 import java.util.Scanner;
 
 public class EingabenUeberpruefen {
@@ -10,9 +9,15 @@ public class EingabenUeberpruefen {
         String inputBezeichnung;
 
         while(true){
-            inputBezeichnung = myScanner.nextLine();
+            inputBezeichnung = myScanner.nextLine().trim();
 
-            if(!inputBezeichnung.matches("[A-Za-zÄÜÖüäö0-9]+([A-Za-zÄÜÖüäö0-9 ])*")){
+            //leer string Überprufen
+            if (inputBezeichnung.isEmpty()) {
+                System.out.println("Die Eingabe darf nicht leer sein!");
+                continue;
+            }
+
+            if (!inputBezeichnung.matches("[A-Za-zÄÜÖüäöß0-9\\s\\p{Punct}]+")){
                 System.out.println("FALSCH BEZEICHNUNG !!");
                 continue;
             }
@@ -56,7 +61,7 @@ public class EingabenUeberpruefen {
         int stuckZahl = readStuckZahl();
         double einzahlPreis = readEinzelpreis();
 
-        System.out.printf("Bezeichnung: %s \nStuckZahl: %d \nEinzahlPreis : %.2f", bezeichnung, stuckZahl, einzahlPreis);
+        System.out.printf("Bezeichnung:%s \nStuckZahl:%d \nEinzahlPreis :%.2f", bezeichnung, stuckZahl, einzahlPreis);
 
     myScanner.close();
     }// End main
