@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Nummerfolge {
     static Scanner myScanner = new Scanner(System.in);
 
-    // Erstellt ein Array mit 30 Zufallszahlen zwischen 0 und 9
+    // Erstellt ein Array mit 15 Zufallszahlen zwischen 0 und 9
     public static int[] creatRandomdata(){
         int[] randomData = new int[15];
         Random myRandom = new Random();
