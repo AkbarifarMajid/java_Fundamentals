@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class MinUndMaxInArrays {
-    static Scanner myScanner = new Scanner(System.in);
+   // static Scanner myScanner = new Scanner(System.in);
 
     // Ermittelt das Minimum in einem Array
     public static double minimumZahl(double[] zahlen) {
@@ -34,24 +34,20 @@ public class MinUndMaxInArrays {
         Random myRandom = new Random();
 
         for (int i = 0; i < wertZhal.length; i++) {
-            wertZhal[i] = 0.00 + myRandom.nextDouble(999.99); // Bereich: 100 - 999
+            wertZhal[i] = myRandom.nextDouble(999.99);
         }
-
 
         for (int i = 0; i < wertZhal.length; i++) {
             System.out.printf("%8.2f", wertZhal[i]);
             if ((i + 1) % 10 == 0) {
-                System.out.println(); // Neue Zeile nach 10 Werten
+                System.out.println();
             }
         }
-
 
         double minimum = minimumZahl(wertZhal);
         System.out.printf("\nMinimum %.2f", minimum);
         double maximum = maxzimumZahl(wertZhal);
         System.out.printf("\nMinimum %.2f", maximum);
-
-
 
     }//End main
 }// End MinUndMaxInArrays
