@@ -30,11 +30,6 @@ public class FarbecodesUmrechnen {
         System.out.print("Geben Sie den CSS-Farbcode ein : ");
         String inputSCCcode = myScanner.nextLine().trim();
 
-        // اگر خالی بود دوباره بخوان
-       // if (inputSCCcode.isEmpty()) {
-         //   inputSCCcode = myScanner.nextLine().trim();
-      //  }
-
         if (inputSCCcode.startsWith("#")) {
             inputSCCcode = inputSCCcode.substring(1);
         }
@@ -43,10 +38,11 @@ public class FarbecodesUmrechnen {
             fehler("Bitte geben Sie genau 6 gültige Hex-Zeichen  mit anfang '#' ein.");
         }
 
-        return convertHexToRgb(inputSCCcode);
+        int [] inputFinalCSS = convertHexToRgb(inputSCCcode);
+        return inputFinalCSS;
     }
 
-    // CSS-Code → RGB konvertieren
+    // CSS-Code in RGB konvertieren
     public static int[] convertHexToRgb(String code) {
         try {
             int r = Integer.parseInt(code.substring(0, 2), 16);
@@ -60,10 +56,11 @@ public class FarbecodesUmrechnen {
     }
 
     // Ausgabe RGB-Werte
-    public static void showRGBfinal(int[] rgb) {
+    public static void showUserRGB(int[] rgb) {
         System.out.printf("Eingegebene RGB-Werte: (%d, %d, %d)%n", rgb[0], rgb[1], rgb[2]);
     }
 
+    //RGB wert in min 0 und max 255 kontrolle
     public static boolean controlRGBwert(int[] rgb) {
         for (int wert : rgb) {
             if (wert < 0 || wert > 255) {
@@ -83,7 +80,7 @@ public class FarbecodesUmrechnen {
     }
 
     // Ausgabe CMY-Werte
-    public static void zeigeCmy(double[] cmy) {
+    public static void showFinalCmy(double[] cmy) {
         System.out.println("\nUmgerechnete CMY-Werte:");
         System.out.printf("Cyan:    %.2f%%%n", cmy[0]);
         System.out.printf("Magenta: %.2f%%%n", cmy[1]);
@@ -99,29 +96,29 @@ public class FarbecodesUmrechnen {
 
     public static void main(String[] args) {
 
-        System.out.println("Bitte waelen Die RGB oder CSS: ");
-        String modus = myScanner.nextLine();
+        System.out.println("Bitte waelen Sie Die RGB oder CSS: ");
+        String userModus = myScanner.nextLine();
 
-        int[] userRGB =null;
+        int[] userInput =null;
 
-        if (modus.equalsIgnoreCase("RGB")) {
-            userRGB = readRGB();
+        if (userModus.equalsIgnoreCase("RGB")) {
+            userInput = readRGB();
 
-            if (!controlRGBwert(userRGB)) {
+            if (!controlRGBwert(userInput)) {
                 fehler("Geben Sit bitte eine Werte zwischen 0 und 255 liegen.");
             }
 
-        } else if (modus.equalsIgnoreCase("CSS")) {
-            userRGB = readCSS();
+        } else if (userModus.equalsIgnoreCase("CSS")) {
+            userInput = readCSS();
 
         } else {
             fehler("Falsche Modus eingegeben!");
         }
 
-        showRGBfinal(userRGB);
+        showUserRGB(userInput);
 
-        double[] cmy = convertRGBtoCMY(userRGB);
-        zeigeCmy(cmy);
+        double[] cmy = convertRGBtoCMY(userInput);
+        showFinalCmy(cmy);
     }
 
 }
