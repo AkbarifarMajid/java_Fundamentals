@@ -51,13 +51,13 @@ public class FarbecodesUmrechnen {
             return new int[]{r, g, b};
         } catch (NumberFormatException e) {
             fehler("Problem beim Konvertieren des Farbwerts: " + e.getMessage());
-            return null; // nie erreicht
+            return null; // für debug ERROR
         }
     }
 
     // Ausgabe RGB-Werte
     public static void showUserRGB(int[] rgb) {
-        System.out.printf("Eingegebene RGB-Werte: (%d, %d, %d)%n", rgb[0], rgb[1], rgb[2]);
+        System.out.printf("Eingang RGB : (%d, %d, %d)%n", rgb[0], rgb[1], rgb[2]);
     }
 
     //RGB wert in min 0 und max 255 kontrolle
@@ -81,10 +81,10 @@ public class FarbecodesUmrechnen {
 
     // Ausgabe CMY-Werte
     public static void showFinalCmy(double[] cmy) {
-        System.out.println("\nUmgerechnete CMY-Werte:");
-        System.out.printf("Cyan:    %.2f%%%n", cmy[0]);
-        System.out.printf("Magenta: %.2f%%%n", cmy[1]);
-        System.out.printf("Yellow:  %.2f%%%n", cmy[2]);
+        System.out.println("\nAlle CMY-Werte:");
+        System.out.printf("Wert C (Cyan):    %.2f", cmy[0]);
+        System.out.printf("\nWert M (Magenta): %.2f", cmy[1]);
+        System.out.printf("\nWert Y (Yellow):  %.2f", cmy[2]);
     }
 
 
