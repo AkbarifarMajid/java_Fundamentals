@@ -68,15 +68,17 @@ public class Taschenrechner {
         nummer2 = nummer2.replace(",", ".");
 
         // Typ der Zahlen erkennen (int oder double)
-        boolean isDouble = nummer1.contains(".") || nummer2.contains(".");
+        boolean istDouble = nummer1.contains(".") || nummer2.contains(".");
 
 
-        if (isDouble) {
+        if (istDouble) {
+            //String to Double
             double zahl1 = Double.parseDouble(nummer1);
             double zahl2 = Double.parseDouble(nummer2);
             double ergebnis = rechne(zahl1, zahl2, operator);
             System.out.printf("Result: %.2f %s %.2f = %.2f\n", zahl1, operator, zahl2, ergebnis);
         } else {
+            //String to Int
             int zahl1 = Integer.parseInt(nummer1);
             int zahl2 = Integer.parseInt(nummer2);
             int ergebnis = rechne(zahl1, zahl2, operator);

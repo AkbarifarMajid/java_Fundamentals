@@ -28,17 +28,17 @@ public class FarbecodesUmrechnen {
     // CSS-Code lesen und in RGB umwandeln
     public static int[] readCSS() {
         System.out.print("Geben Sie den CSS-Farbcode ein : ");
-        String inputSCCcode = myScanner.nextLine().trim();
+        String inputCSScode = myScanner.nextLine().trim();
 
-        if (inputSCCcode.startsWith("#")) {
-            inputSCCcode = inputSCCcode.substring(1);
+        if (inputCSScode.startsWith("#")) {
+            inputCSScode = inputCSScode.substring(1);
         }
 
-        if (inputSCCcode.length() != 6 || !inputSCCcode.matches("[0-9a-fA-F]{6}")) {
+        if (inputCSScode.length() != 6 || !inputCSScode.matches("[0-9a-fA-F]{6}")) {
             fehler("Bitte geben Sie genau 6 gültige Hex-Zeichen  mit anfang '#' ein.");
         }
 
-        int [] inputFinalCSS = convertHexToRgb(inputSCCcode);
+        int [] inputFinalCSS = convertHexToRgb(inputCSScode);
         return inputFinalCSS;
     }
 
