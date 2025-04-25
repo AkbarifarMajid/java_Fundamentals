@@ -11,6 +11,19 @@ public abstract class Fahrzeug {
     private double getankterKraftstoff;
     private String standort;
     private ArrayList<String> wartungstermine;
+/*
+    public Fahrzeug(int id, String hersteller, String modell, int baujahr, double kilometerstand, double getankterKraftstoff, String standort, ArrayList<String> wartungstermine) {
+        this.id = id;
+        this.hersteller = hersteller;
+        this.modell = modell;
+        this.baujahr = baujahr;
+        this.kilometerstand = kilometerstand;
+        this.getankterKraftstoff = getankterKraftstoff;
+        this.standort = standort;
+        this.wartungstermine = wartungstermine;
+    }
+
+ */
 
 
     public Fahrzeug(int id, String hersteller, String modell, int baujahr) {
@@ -25,6 +38,7 @@ public abstract class Fahrzeug {
 
         fahrzeugZaehler++;
     }
+
 
 
     //-----------------------------------------------------------------------------------
