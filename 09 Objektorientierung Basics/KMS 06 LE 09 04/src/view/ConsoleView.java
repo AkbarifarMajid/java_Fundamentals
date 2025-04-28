@@ -17,25 +17,6 @@ public class ConsoleView {
         }
     }
 
-    // Liste der Tracks eines Albums anzeigen
-    public void trackListAnzeige(Album album) {
-        if (album != null) {
-            List<Track> tracks = album.getAllTracksInAlbum();
-            System.out.println("\nAlle Track im Album " + album.getTitleAlbum() + ":");
-
-            if (tracks.isEmpty()) {
-                System.out.println("  (Keine Tracks gefunden)");
-            } else {
-                for (Track tr : tracks) {
-                    int cunter = 1 ;
-                    System.out.println(cunter + ": \n" + tr.toString());
-                    cunter++;
-                }
-            }
-        } else {
-            System.out.println("Das gewünschte Album wurde nicht gefunden.");
-        }
-    }
 
     // Eine einfache Erfolgsmeldung anzeigen
     public void messegeAnzeige(String message) {
@@ -54,23 +35,6 @@ public class ConsoleView {
             System.err.println("Unbekannter Fehler.");
         }
     }
-
-
-    // Alle Alben anzeigen
-    public void alleAlbumsAnzeigen(List<Album> albums) {
-        if (albums.isEmpty()) {
-            System.out.println("Es gibt Keine Alben vorhanden.");
-        } else {
-            System.out.println("\nListe aller Alben:");
-            int cunter = 1;
-            for (Album album : albums) {
-                System.out.println(cunter + ":\n" + album.toString());
-                cunter++;
-                System.out.println("----------------------------------");
-            }
-        }
-    }
-
 
 
 }
