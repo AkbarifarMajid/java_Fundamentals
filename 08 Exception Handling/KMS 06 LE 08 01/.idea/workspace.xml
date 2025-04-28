@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a5b79815-9a54-4e67-a750-af75061d581e" name="Changes" comment="Lottozahlen-Eingabeprogramm mit Eingabevalidierung und sortierter Ausgabe hinzugefügt">
+      <change afterPath="$PROJECT_DIR$/../../09 Objektorientierung Basics/KMS 06 LE 09 04/musikverwaltung/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../09 Objektorientierung Basics/KMS 06 LE 09 04/musikverwaltung/src/controller/AlbumController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../09 Objektorientierung Basics/KMS 06 LE 09 04/musikverwaltung/src/model/Album.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../09 Objektorientierung Basics/KMS 06 LE 09 04/musikverwaltung/src/model/Track.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../09 Objektorientierung Basics/KMS 06 LE 09 04/musikverwaltung/src/view/ConsoleView.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AkbarifarMajid&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AkbarifarMajid/java_Fundamentals.git&quot;,
+    &quot;accountId&quot;: &quot;5d7967be-8b48-4e79-9ea1-8f16e880819c&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2w4bnrCOG4PYeHuMEOxamfH19J4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Lotto.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/052240/source/java_Fundamentals/07 Zeitfunktionen"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a5b79815-9a54-4e67-a750-af75061d581e" name="Changes" comment="" />
+      <created>1745303962642</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745303962642</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Lottozahlen-Eingabeprogramm mit Eingabevalidierung und sortierter Ausgabe hinzugefügt">
+      <option name="closed" value="true" />
+      <created>1745306995939</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745306995939</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Lottozahlen-Eingabeprogramm mit Eingabevalidierung und sortierter Ausgabe hinzugefügt">
+      <option name="closed" value="true" />
+      <created>1745307094561</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1745307094561</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Lottozahlen-Eingabeprogramm mit Eingabevalidierung und sortierter Ausgabe hinzugefügt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lottozahlen-Eingabeprogramm mit Eingabevalidierung und sortierter Ausgabe hinzugefügt" />
+  </component>
+</project>
