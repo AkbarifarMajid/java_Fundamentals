@@ -57,11 +57,13 @@ public class Track {
         }
     }
 
-
+/*
     // Dauer als Minuten in Double berechnen
     public double GenaueZeitberechnungnMinute() {
-        return minutes + (seconds / 60.0);
+        return minutes + (seconds % 60.0);
     }
+
+ */
     
     @Override
     public String toString() {

@@ -75,14 +75,39 @@ public class Album {
         return allTracksInAlbum.removeIf(mytrack -> mytrack.getTrackId().equals(trackId));
     }
 
+   /*
     // Gesamtdauer des Albums berechnen
     public double totalTimeAlbum() {
         double summe = 0;
-        for (Track tr : allTracksInAlbum) {
-            summe += tr.GenaueZeitberechnungnMinute();
+        for (Track totalTime : allTracksInAlbum) {
+            summe += totalTime.GenaueZeitberechnungnMinute();
         }
         return summe;
     }
+    */
+
+
+
+
+
+    //Genaue Berechnung der gesamten Albumzeit
+    public String totalTimeFormatted() {
+        int myMinutes = 0;
+        int mySeconds = 0;
+
+        for (Track timetotal : allTracksInAlbum) {
+            myMinutes += timetotal.getMinutes();
+            mySeconds += timetotal.getSeconds();
+        }
+
+        // Konvertieren Sie Sekunden in Minuten.
+        myMinutes += mySeconds / 60;
+        mySeconds = mySeconds % 60;
+
+        return String.format("%02d:%02d Minuten", myMinutes, mySeconds);
+    }
+
+
 
 
     // Albuminformationen anzeigen
@@ -103,8 +128,8 @@ public class Album {
             }
         }
 
-       // System.out.println(" -----------  Gesamte Dauer ---------------");
-        albumInfo += "\n -----------  Gesamte Dauer --------------- \nGesamtdauer: " + String.format("%.2f", totalTimeAlbum()) + " Minuten\n";
+
+        albumInfo += "\n -----------  Gesamte Dauer --------------- \nGesamtdauer: " + totalTimeFormatted() + "\n";
         return albumInfo;
     }
 

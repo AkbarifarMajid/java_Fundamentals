@@ -1,0 +1,3 @@
+ALBUM;A1;Frieden;Alex
+TRACK;T2;Garten;mp3;4;52
+ALBUM;A2;Leere Stadt;Sara
