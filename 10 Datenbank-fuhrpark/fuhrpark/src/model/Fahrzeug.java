@@ -2,11 +2,11 @@ package model;
 
 import database.FahrzeugDAO;
 
-import java.util.ArrayList;
 
-
+// Abstrakte Basisklasse für alle Fahrzeugtypen
 public abstract class Fahrzeug {
 
+    // Zugewiesener Besitzer (Mitarbeiter) des Fahrzeugs
     protected Mitarbeiter besitzer;
 
     protected int id;
@@ -20,7 +20,7 @@ public abstract class Fahrzeug {
     protected String wartungstermine;
 
 
-
+    // Konstruktor für neue Fahrzeuge ohne ID
     public Fahrzeug(String hersteller, String modell, int baujahr) {
         this.hersteller = hersteller;
         this.modell = modell;
@@ -30,6 +30,8 @@ public abstract class Fahrzeug {
         this.standort = "Unbekannt";
         this.wartungstermine = "Unbekannt Datum";
     }
+
+    // Konstruktor mit vollständigen Fahrzeugdaten (inkl. ID und Typ)
     public Fahrzeug(int id, String typ_Fahrzeug, String hersteller, String modell, int baujahr) {
         this.id = id;
         this.typ_Fahrzeug = typ_Fahrzeug;
@@ -47,50 +49,36 @@ public abstract class Fahrzeug {
     }
 
 
-    // Methoden
+    // Methode zum Hinzufügen von Kilometern bei Fahrten
     public void fahren(double kilometer) {
         if (kilometer > 0) {
             this.kilometerstand += kilometer;
         }
     }
 
+    // Methode zum Auffüllen des Kraftstoffs
     public void tanken(double liter) {
         if (liter > 0) {
             this.kraftstoff += liter;
         }
     }
 
+    // Wartungstermin dem Fahrzeug hinzufügen
     public void setwartungstermine(String datum) {
-        //Validate ????
         if (datum != null && !datum.isEmpty()) {
 
             this.wartungstermine = datum;
         }
     }
 
-    public void setBesitzer(Mitarbeiter m)
-    { this.besitzer = m;
-    }
+
+    // Getter- und Setter-Methoden für Fahrzeugattribute
+    public void setBesitzer(Mitarbeiter m) { this.besitzer = m;}
     public Mitarbeiter getBesitzer() { return besitzer; }
-
-
-    public void setKilometerstand(double kilometerstand) {
-        this.kilometerstand = kilometerstand;
-    }
-
-    public String getWartungstermine() {
-        return wartungstermine;
-    }
-
-    public String getTyp_Fahrzeug() {
-        return typ_Fahrzeug;
-    }
-
-    public void setTyp_Fahrzeug(String typ_Fahrzeug) {
-        this.typ_Fahrzeug = typ_Fahrzeug;
-    }
-
-    // Getter & Setter
+    public void setKilometerstand(double kilometerstand) {this.kilometerstand = kilometerstand;}
+    public String getWartungstermine() {return wartungstermine;}
+    public String getTyp_Fahrzeug() {return typ_Fahrzeug;}
+    public void setTyp_Fahrzeug(String typ_Fahrzeug) {this.typ_Fahrzeug = typ_Fahrzeug;}
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getHersteller() { return hersteller; }
@@ -100,17 +88,11 @@ public abstract class Fahrzeug {
     public double getKraftstoff() { return kraftstoff; }
     public String getStandort() { return standort; }
     public void setStandort(String standort) { this.standort = standort; }
-    //public ArrayList<String> getWartungstermine() { return wartungstermine; }
+    public void setKraftstoff(double kraftstoff) {this.kraftstoff = kraftstoff;}
+    public static Fahrzeug fahrzeugSuchen(int farzeugId){return FahrzeugDAO.findeNachId(farzeugId);}
 
-    public void setKraftstoff(double kraftstoff) {
-        this.kraftstoff = kraftstoff;
-    }
 
-    public static Fahrzeug fahrzeugSuchen(int farzeugId){
-        return FahrzeugDAO.findeNachId(farzeugId);
-
-    }
-
+    // Abstrakte Methode zur Ausgabe der Fahrzeuginformationen
     public abstract void anzeigen();
 
 }

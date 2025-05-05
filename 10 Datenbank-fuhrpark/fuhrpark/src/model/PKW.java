@@ -17,21 +17,16 @@ public class PKW extends Fahrzeug {
     }
 
     public PKW() {
-
     }
 
-    public int getSitzanzahl() {
-        return sitzanzahl;
-    }
+    public int getSitzanzahl() {return sitzanzahl;}
 
     public static int readVonDAOSitzanzahl(int fahrzeugId) {
         return PkwDAO.getSitzanzahl(fahrzeugId);
     }
 
 
-    public void setSitzanzahl(int sitzanzahl) {
-        this.sitzanzahl = sitzanzahl;
-    }
+    public void setSitzanzahl(int sitzanzahl) {this.sitzanzahl = sitzanzahl;}
 
     @Override
     public void anzeigen() {

@@ -5,10 +5,10 @@ import model.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-
+// Datenbankoperationen für alle Fahrzeugtypen
 public class FahrzeugDAO {
 
-    // Fahrzeug in die Datenbank einfügen
+    // Fügt ein Fahrzeug in die Haupttabelle ein
     public static void einfuegen(Fahrzeug fahrzeug, String typ) {
         String sql = "INSERT INTO fahrzeug (typ_Fahrzeug, hersteller_Fahrzeug, modell_Fahrzeug, baujahr_Fahrzeug) VALUES (?, ?, ?, ?)";
 
@@ -42,8 +42,7 @@ public class FahrzeugDAO {
         }
     }
 
-
-    // Alle Fahrzeuge aus der DB laden
+    // Lädt alle Fahrzeuge aus der Haupttabelle
     public static ArrayList<Fahrzeug> ladenAlle() {
         ArrayList<Fahrzeug> liste = new ArrayList<>();
         String sql = "SELECT * FROM fahrzeug";
@@ -88,8 +87,6 @@ public class FahrzeugDAO {
 
         return liste;
     }
-
-
 
     // Fahrzeug nach ID suchen
     public static Fahrzeug findeNachId(int id) {
@@ -187,7 +184,6 @@ public class FahrzeugDAO {
         return null;
     }
 
-
     // Fahrzeug löschen
     public static boolean loeschen(int id) {
         String sql = "DELETE FROM fahrzeug WHERE id_Fahrzeug = ?";
@@ -205,7 +201,7 @@ public class FahrzeugDAO {
         }
     }
 
-
+    // Aktualisiert den Besitzer eines Fahrzeugs
     public static boolean besitzerAktualisieren(int fahrzeugId, int mitarbeiterId) {
         String sql = "UPDATE fahrzeug SET besitzer_id = ? WHERE id_Fahrzeug = ?";
 
@@ -224,8 +220,7 @@ public class FahrzeugDAO {
         }
     }
 
-
-
+    // Aktualisiert den Kilometerstand eines Fahrzeugs
     public static boolean kilometerAktualisieren(int id, double neuerKmStand) {
         String sql = "UPDATE fahrzeug SET kilometer_Fahrzeug = ? WHERE id_Fahrzeug = ?";
 
@@ -244,7 +239,7 @@ public class FahrzeugDAO {
         }
     }
 
-
+    // Fügt einen Wartungstermin als String hinzu
     public static boolean wartungAktualisieren(int id, String datum) {
         String sql = "UPDATE fahrzeug SET wartungstermine = ? WHERE id_Fahrzeug = ?";
 
@@ -262,8 +257,6 @@ public class FahrzeugDAO {
             return false;
         }
     }
-
-
 
     // Fahrzeug in die Datenbank Bearbeiten
     public static void berabeiten(Fahrzeug farzeug) {
@@ -299,7 +292,7 @@ public class FahrzeugDAO {
         }
     }
 
-
+    // Aktualisiert den Kraftstoffstand
     public static boolean kraftstoffAktualisieren(int id, double kraftstoff) {
         String sql = "UPDATE fahrzeug SET kraftstoff_Fahrzeug = ? WHERE id_Fahrzeug = ?";
 

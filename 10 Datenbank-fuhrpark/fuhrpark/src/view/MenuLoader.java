@@ -6,9 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 
-/**
- * Liest eine Menü-Datei (z. B. menu_haupt.txt) und gibt sie als LinkedHashMap zurück.
- */
+// Liest eine Menü-Datei ale .txt und gibt sie als LinkedHashMap zurück.
+
 public class MenuLoader {
 
     public static LinkedHashMap<String, String> loadMenu(String filename) {

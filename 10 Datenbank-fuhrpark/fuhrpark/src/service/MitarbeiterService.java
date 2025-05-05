@@ -1,33 +1,28 @@
 package service;
 
-import database.FahrzeugDAO;
 import database.MitarbeiterDAO;
-import model.Fahrzeug;
 import model.Mitarbeiter;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Serviceklasse für Mitarbeiter-Operationen
- */
+// Geschäftslogik für Mitarbeiter (Validierung + DAO-Aufrufe)
 public class MitarbeiterService {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-
+    // Gibt alle zurück
     public static ArrayList<Mitarbeiter> serviceAlleMitarbeiter() {
         return MitarbeiterDAO.ladenAlle();
-
     }
 
-
+    // Sucht nach ID
     public static Mitarbeiter mitarbeiterSuchen(int mitarbeiterId) {
         return MitarbeiterDAO.findeNachId(mitarbeiterId);
 
     }
 
-
+    // Neuer Mitarbeiter wird hinzugefügt
     public static void mitarbeiterHinzufuegen(String vorname, String nachname, String position, String telefon) {
 
         if (vorname.isBlank() || nachname.isBlank()) {
@@ -40,6 +35,7 @@ public class MitarbeiterService {
 
     }
 
+    // Löscht
     public static boolean mitarbeiterLoeschen(int id) {
 
         if (id <= 0) {
@@ -51,7 +47,7 @@ public class MitarbeiterService {
 
     }
 
-
+    // Bearbeitet ein Feld eines Mitarbeiters
     public static boolean mitarbeiter_Bearbeiten(int mitarbeiter_Id,String feld_Mitarbeiter, String neu_Wert){
         Mitarbeiter mitarbeiter = MitarbeiterDAO.findeNachId(mitarbeiter_Id);
 
@@ -75,9 +71,5 @@ public class MitarbeiterService {
 
         return MitarbeiterDAO.mitarbeiter_Update(mitarbeiter);
     }
-
-
-
-
 
 }

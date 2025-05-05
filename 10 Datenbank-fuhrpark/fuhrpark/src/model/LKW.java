@@ -11,28 +11,22 @@ public class LKW extends Fahrzeug {
         super(hersteller, modell, baujahr);
         this.ladegewicht = ladegewicht;
     }
+
     public LKW(int id,String typ_Fahrzeug ,String hersteller, String modell, int baujahr, double ladegewicht) {
         super(id,typ_Fahrzeug ,hersteller, modell, baujahr);
         this.ladegewicht = ladegewicht;
     }
     public LKW() {
-
     }
 
 
 
-    public double getLadegewicht() {
-
-        return ladegewicht;
-    }
+    public double getLadegewicht() {return ladegewicht;}
 
     public static double ReadVonDAOLadegewicht(int fahrzeugId) {
-        return LkwDAO.getLadegewicht(fahrzeugId);
-    }
+        return LkwDAO.getLadegewicht(fahrzeugId);}
 
-    public void setLadegewicht(double ladegewicht) {
-        this.ladegewicht = ladegewicht;
-    }
+    public void setLadegewicht(double ladegewicht) {this.ladegewicht = ladegewicht;}
 
     @Override
     public void anzeigen() {

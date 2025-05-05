@@ -7,8 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// Datenbankzugriff für Motorräder
 public class MotorradDAO {
 
+    // Datenbankzugriff für Motorräder nur Fahrzeug id und Hubraum Kraft und  hat Gangschaltung oder nein.
     public static void einfuegen(Motorrad motorrad) {
         String sql = "INSERT INTO motorrad (fahrzeug_id, hubraum, gangschaltung) VALUES (?, ?, ?)";
 
@@ -25,7 +27,7 @@ public class MotorradDAO {
         }
     }
 
-
+    // Gibt den Hubraum eines Motorrads anhand seiner Fahrzeug-ID zurück
     public static int getHubraum(int fahrzeugId) {
         String sql = "SELECT hubraum FROM motorrad WHERE fahrzeug_id = ?";
         try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
@@ -40,7 +42,7 @@ public class MotorradDAO {
     }
 
 
-
+    // Prüft, ob das Motorrad eine Gangschaltung hat (true/false)
     public static boolean getGangschaltung(int fahrzeugId) {
         String sql = "SELECT gangschaltung FROM motorrad WHERE fahrzeug_id = ?";
         try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
@@ -54,16 +56,16 @@ public class MotorradDAO {
         return false;
     }
 
-
-    public static void berabeiten(Motorrad m) {
+    // Aktualisiert die Werte für Hubraum und Gangschaltung eines Motorrads
+    public static void berabeiten(Motorrad motorrad) {
         String sql =  "update motorrad set hubraum = ?, gangschaltung = ?  where fahrzeug_id=?";
 
         try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setInt(1, m.getHubraum());
-            statement.setBoolean(2, m.isGangschaltung());
-            statement.setInt(3, m.getId());
+            statement.setInt(1, motorrad.getHubraum());
+            statement.setBoolean(2, motorrad.isGangschaltung());
+            statement.setInt(3, motorrad.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {

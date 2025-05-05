@@ -5,10 +5,10 @@ import model.Mitarbeiter;
 import java.sql.*;
 import java.util.ArrayList;
 
-
+// Datenbankzugriffe für Mitarbeiter
 public class MitarbeiterDAO {
 
-    // Mitarbeiter hinzufügen
+    // Fügt neuen Mitarbeiter ein
     public static void einfuegen(Mitarbeiter mitarbeiter) {
         String sql = "INSERT INTO mitarbeiter (vorname_Mitarbeiter, nachname_Mitarbeiter, position_Mitarbeiter, telefon_Mitarbeiter) VALUES (?, ?, ?, ?)";
 
@@ -34,7 +34,7 @@ public class MitarbeiterDAO {
         }
     }
 
-    // Alle Mitarbeiter laden
+    // Gibt eine Liste aller Mitarbeiter zurück
     public static ArrayList<Mitarbeiter> ladenAlle() {
         ArrayList<Mitarbeiter> liste = new ArrayList<>();
 
@@ -90,6 +90,7 @@ public class MitarbeiterDAO {
         return null;
     }
 
+    // Löscht einen Mitarbeiter aus der Datenbank
     public static boolean loeschen(int id) {
         String sql = "DELETE FROM mitarbeiter WHERE id_Mitarbeiter = ?";
 
@@ -106,6 +107,7 @@ public class MitarbeiterDAO {
         }
     }
 
+    // Aktualisiert die Mitarbeiterdaten
     public static boolean mitarbeiter_Update(Mitarbeiter mitarbeiter){
         String sql_Update = "UPDATE mitarbeiter SET vorname_Mitarbeiter=?,nachname_Mitarbeiter = ?, position_Mitarbeiter = ?, telefon_Mitarbeiter = ? where id_Mitarbeiter= ?";
 
@@ -126,6 +128,5 @@ public class MitarbeiterDAO {
         }
 
     }
-
 
 }

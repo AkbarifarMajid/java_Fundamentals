@@ -38,7 +38,7 @@ public class HauptmenueView {
         } while (!haupt_Options.equals("x"));
     }
 
-
+    // Hauptmenü und Submenüs anzeigen + Steuerung
     private void zeigeSubMenu(String dateiName, String titel) {
         String manu_Wealen;
         HashMap<String, String> submenu = MenuLoader.loadMenu(dateiName);
@@ -81,6 +81,5 @@ public class HauptmenueView {
 
 
     }
-
 
 }

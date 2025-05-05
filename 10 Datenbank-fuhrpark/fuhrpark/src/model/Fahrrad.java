@@ -18,22 +18,10 @@ public class Fahrrad extends Fahrzeug {
 
 
 
-    public boolean isHatKorb() {
-        return hatKorb;
-    }
-
-
-    public static boolean radVonADOHatKorb(int fahrzeugId ) {
-        return FahrradDAO.getHatKorb(fahrzeugId);
-
-    }
-
-    public Fahrrad() {
-
-    }
-    public void setHatKorb(boolean hatKorb) {
-        this.hatKorb = hatKorb;
-    }
+    public boolean isHatKorb() {return hatKorb;}
+    public static boolean radVonADOHatKorb(int fahrzeugId ) {return FahrradDAO.getHatKorb(fahrzeugId);}
+    public Fahrrad() {}
+    public void setHatKorb(boolean hatKorb) {this.hatKorb = hatKorb;}
 
     @Override
     public void anzeigen() {

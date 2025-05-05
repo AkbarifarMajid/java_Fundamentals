@@ -20,24 +20,15 @@ public class Mitarbeiter {
     }
 
 
+    // Getter/Setter für Vorname, Nachname, Position, Telefonnummer
+    public void setVorname(String vorname) {this.vorname = vorname;}
 
-    public void setVorname(String vorname) {
-        this.vorname = vorname;
-    }
+    public void setNachname(String nachname) {this.nachname = nachname;}
 
-    public void setNachname(String nachname) {
-        this.nachname = nachname;
-    }
+    public void setPosition(String position) {this.position = position;}
 
-    public void setPosition(String position) {
-        this.position = position;
-    }
+    public void setTelefonnummer(String telefonnummer) {this.telefonnummer = telefonnummer;}
 
-    public void setTelefonnummer(String telefonnummer) {
-        this.telefonnummer = telefonnummer;
-    }
-
-    // Getter & Setter
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getVorname() { return vorname; }

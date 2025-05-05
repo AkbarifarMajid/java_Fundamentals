@@ -2,9 +2,8 @@ package view;
 
 import java.util.Map;
 
-/**
- * Druckt ein Menü basierend auf einer Map (z. B. geladen aus einer Datei).
- */
+// Druckt ein Menü basierend auf einer Map.
+
 public class MenuPrinter {
 
     public static void printMenu(Map<String, String> menuMap, String titel) {

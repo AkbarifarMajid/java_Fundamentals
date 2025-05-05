@@ -1,32 +1,27 @@
 package service;
 
-import database.DatabaseManager;
-import database.FahrradDAO;
 import database.FahrzeugDAO;
 import model.*;
 
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import database.MitarbeiterDAO;
 
+// Schicht zur Geschäftslogik für Fahrzeuge (Validierung, Koordination zwischen View und DAO)
 public class FahrzeugService {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner myScanner = new Scanner(System.in);
 
     public static ArrayList<Fahrzeug> serviceAlleFahrzeug() {
        return FahrzeugDAO.ladenAlle();
-
     }
 
     public static int getSitzanzahl(int fahrzeugId) {
         return PKW.readVonDAOSitzanzahl(fahrzeugId);
-
     }
 
     public static double getLadegewicht(int fahrzeugId) {
         return LKW.ReadVonDAOLadegewicht(fahrzeugId);
-
     }
 
     public static int getHubraum(int fahrzeugId) {
@@ -35,7 +30,6 @@ public class FahrzeugService {
 
     public static boolean getGangschaltung(int fahrzeugId) {
         return Motorrad.readVonADOGangschaltung(fahrzeugId);
-
     }
 
     public static boolean getHatKorb(int fahrzeugId) {
@@ -51,24 +45,24 @@ public class FahrzeugService {
         switch (typ) {
             case "1" -> {
                 System.out.print("Sitzanzahl: ");
-                int sitzanzahl = Integer.parseInt(scanner.nextLine());
+                int sitzanzahl = Integer.parseInt(myScanner.nextLine());
                 fahrzeug = new PKW(hersteller, modell, baujahr, sitzanzahl);
             }
             case "2" -> {
                 System.out.print("Ladegewicht (Tonnen): ");
-                double ladegewicht = Double.parseDouble(scanner.nextLine());
+                double ladegewicht = Double.parseDouble(myScanner.nextLine());
                 fahrzeug = new LKW(hersteller, modell, baujahr, ladegewicht);
             }
             case "3" -> {
                 System.out.print("Hubraum (ccm): ");
-                int hubraum = Integer.parseInt(scanner.nextLine());
+                int hubraum = Integer.parseInt(myScanner.nextLine());
                 System.out.print("Hat Gangschaltung (true/false): ");
-                boolean gangschaltung = Boolean.parseBoolean(scanner.nextLine());
+                boolean gangschaltung = Boolean.parseBoolean(myScanner.nextLine());
                 fahrzeug = new Motorrad(hersteller, modell, baujahr, hubraum, gangschaltung);
             }
             case "4" -> {
                 System.out.print("Hat Korb (true/false): ");
-                boolean hatKorb = Boolean.parseBoolean(scanner.nextLine());
+                boolean hatKorb = Boolean.parseBoolean(myScanner.nextLine());
                 fahrzeug = new Fahrrad(hersteller, modell, baujahr, hatKorb);
             }
             default ->{
@@ -84,7 +78,7 @@ public class FahrzeugService {
         }
     }
 
-
+    // Fährt ein Fahrzeug
     public static boolean fahrzeugFahren(int id, double km){
         if (km <= 0) {
             System.out.println("Kilometer muss nicht wenige als 1 sein");
@@ -111,7 +105,7 @@ public class FahrzeugService {
         return true;
     }
 
-
+    // Tanken eines Fahrzeugs
     public static boolean fahrzeugTanken(int id,double liter) {
         if (liter <= 0) {
             System.out.println("Liter dar nicht wenige als 1 liter sein.");
@@ -135,7 +129,7 @@ public class FahrzeugService {
 
     }
 
-
+    // Fügt Wartung hinzu
     public static boolean wartungEintragen(int id,String datum) {
 
         Fahrzeug f = FahrzeugDAO.findeNachId(id);
@@ -148,7 +142,7 @@ public class FahrzeugService {
         return true;
     }
 
-
+    // Zuweisung eines Fahrzeugs zu einem Mitarbeiter
     public static boolean fahrzeugZuweisen(int fahrzeugId, int mitarbeiterId) {
 
         Fahrzeug fahrzeug = FahrzeugDAO.findeNachId(fahrzeugId);
@@ -167,7 +161,7 @@ public class FahrzeugService {
 
     }
 
-
+    // Löscht Fahrzeug
     public static boolean fahrzeugLoeschen(int id) {
         Fahrzeug fahrzeug = FahrzeugDAO.findeNachId(id);
 
@@ -179,13 +173,13 @@ public class FahrzeugService {
         return FahrzeugDAO.loeschen(id);
     }
 
-
+    // Sucht Fahrzeug per ID
     public static Fahrzeug fahrzeugSuchen(int fahrzeugId) {
         return Fahrzeug.fahrzeugSuchen(fahrzeugId);
 
     }
 
-
+    // Bearbeiten der Fahrzeugdaten
     public static void fahrzeugBearbeiten(int id,String typ, String hersteller, String modell, int baujahr) {
 
 
@@ -194,24 +188,24 @@ public class FahrzeugService {
         switch (typ) {
             case "PKW" -> {
                 System.out.print("Sitzanzahl: ");
-                int sitzanzahl = Integer.parseInt(scanner.nextLine());
+                int sitzanzahl = Integer.parseInt(myScanner.nextLine());
                 fahrzeug = new PKW(id,typ ,hersteller, modell, baujahr, sitzanzahl);
             }
             case "LKW" -> {
                 System.out.print("Ladegewicht (Tonnen): ");
-                double ladegewicht = Double.parseDouble(scanner.nextLine());
+                double ladegewicht = Double.parseDouble(myScanner.nextLine());
                 fahrzeug = new LKW(id,typ,hersteller, modell, baujahr, ladegewicht);
             }
             case "Motorrad" -> {
                 System.out.print("Hubraum (ccm): ");
-                int hubraum = Integer.parseInt(scanner.nextLine());
+                int hubraum = Integer.parseInt(myScanner.nextLine());
                 System.out.print("Hat Gangschaltung (true/false): ");
-                boolean gangschaltung = Boolean.parseBoolean(scanner.nextLine());
+                boolean gangschaltung = Boolean.parseBoolean(myScanner.nextLine());
                 fahrzeug = new Motorrad(id,typ,hersteller, modell, baujahr, hubraum, gangschaltung);
             }
             case "Fahrrad" -> {
                 System.out.print("Hat Korb (true/false): ");
-                boolean hatKorb = Boolean.parseBoolean(scanner.nextLine());
+                boolean hatKorb = Boolean.parseBoolean(myScanner.nextLine());
                 fahrzeug = new Fahrrad(id,typ,hersteller, modell, baujahr, hatKorb);
             }
             default ->{

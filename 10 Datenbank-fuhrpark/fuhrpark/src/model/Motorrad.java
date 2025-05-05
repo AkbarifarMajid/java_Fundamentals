@@ -21,13 +21,10 @@ public class Motorrad extends Fahrzeug {
 
     }
 
-    public int getHubraum() {
-        return hubraum;
-    }
+    public int getHubraum() {return hubraum;}
 
     public static int readVonADOHubraum(int fahrzeugId) {
         return MotorradDAO.getHubraum(fahrzeugId);
-
     }
 
     public void setHubraum(int hubraum) {
@@ -39,7 +36,6 @@ public class Motorrad extends Fahrzeug {
     }
     public static boolean readVonADOGangschaltung(int fahrzeugId) {
         return MotorradDAO.getGangschaltung(fahrzeugId);
-
     }
 
 

@@ -1,49 +1,17 @@
 package view;
 
-import database.MitarbeiterDAO;
-import model.Fahrzeug;
 import model.Mitarbeiter;
-import service.FahrzeugService;
 import service.MitarbeiterService;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// Benutzerschnittstelle für Mitarbeiter
 public class MitarbeiterView {
 
     public static Scanner myScanner = new Scanner(System.in);
 
-    public static void mitarbeiterSuchen() {
-        System.out.println("\n--- Mitarbeiter suchen ---");
-        System.out.print("Mitarbeiter-ID: ");
-        int id_Mitarbeiter = Integer.parseInt(myScanner.nextLine());
-
-        Mitarbeiter mitarbeiter = MitarbeiterService.mitarbeiterSuchen(id_Mitarbeiter);
-
-        if (mitarbeiter != null) {
-            System.out.println("\nGefundener Mitarbeiter:");
-            System.out.println(mitarbeiter.getId() + ": " + mitarbeiter.getVorname() + " " + mitarbeiter.getNachname() + ", " + mitarbeiter.getPosition());
-        } else {
-            System.out.println("Mit ID: "+ id_Mitarbeiter +" gibt es Kein Mitarbeiter ");
-        }
-    }
-
-    public static void mitarbeiterAnzeigen(ArrayList<Mitarbeiter> liste) {
-        //var liste = MitarbeiterDAO.ladenAlle();
-        if (liste.isEmpty()) {
-            System.out.println("Die Mitarbeiter Liste ist leer.");
-        } else {
-            System.out.println("--- Mitarbeiterliste ---");
-            for (var mitarbeiter : liste) {
-                System.out.printf("ID: %d - %s %s\n Position: (%s), Tel: %s%n",
-                        mitarbeiter.getId(), mitarbeiter.getVorname(), mitarbeiter.getNachname(),
-                        mitarbeiter.getPosition(),
-                        mitarbeiter.getTelefonnummer());
-                System.out.println("--------------------");
-            }
-        }
-    }
-
+    // Neuen Mitarbeiter hinzufügen
     public static void mitarbeiterHinzufuegen() {
         System.out.println("\n--- Mitarbeiter hinzufügen ---");
 
@@ -64,6 +32,40 @@ public class MitarbeiterView {
 
     }
 
+    //Mitarbeiter nach ID suchen
+    public static void mitarbeiterSuchen() {
+        System.out.println("\n--- Mitarbeiter suchen ---");
+        System.out.print("Mitarbeiter-ID: ");
+        int id_Mitarbeiter = Integer.parseInt(myScanner.nextLine());
+
+        Mitarbeiter mitarbeiter = MitarbeiterService.mitarbeiterSuchen(id_Mitarbeiter);
+
+        if (mitarbeiter != null) {
+            System.out.println("\nGefundener Mitarbeiter:");
+            System.out.println(mitarbeiter.getId() + ": " + mitarbeiter.getVorname() + " " + mitarbeiter.getNachname() + ", " + mitarbeiter.getPosition());
+        } else {
+            System.out.println("Mit ID: "+ id_Mitarbeiter +" gibt es Kein Mitarbeiter ");
+        }
+    }
+
+    //Zeigt alle Mitarbeiter
+    public static void mitarbeiterAnzeigen(ArrayList<Mitarbeiter> liste) {
+        //var liste = MitarbeiterDAO.ladenAlle();
+        if (liste.isEmpty()) {
+            System.out.println("Die Mitarbeiter Liste ist leer.");
+        } else {
+            System.out.println("--- Mitarbeiterliste ---");
+            for (var mitarbeiter : liste) {
+                System.out.printf("ID: %d - %s %s\n Position: (%s), Tel: %s%n",
+                        mitarbeiter.getId(), mitarbeiter.getVorname(), mitarbeiter.getNachname(),
+                        mitarbeiter.getPosition(),
+                        mitarbeiter.getTelefonnummer());
+                System.out.println("--------------------");
+            }
+        }
+    }
+
+    //Löschen
     public static void mitarbeiterLoeschen() {
         System.out.println("\n--- Mitarbeiter löschen ---");
         System.out.print("Mitarbeiter-ID: ");
@@ -89,6 +91,7 @@ public class MitarbeiterView {
         }
     }
 
+    // Bearbeiten
     public static void mitarbeiterBearbeiten(){
         System.out.println("\n--- Mitarbeiter Bearbeiten ---");
 
@@ -127,6 +130,5 @@ public class MitarbeiterView {
         }
 
     }
-
 
 }

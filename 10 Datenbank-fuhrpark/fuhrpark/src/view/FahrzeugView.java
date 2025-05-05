@@ -6,9 +6,31 @@ import java.util.ArrayList;
 import service.FahrzeugService;
 import java.util.Scanner;
 
+// Konsoleingaben und -ausgaben für Fahrzeugfunktionen
 public class FahrzeugView {
    public static Scanner myScanner = new Scanner(System.in);
 
+    // Fahrzeug hinzufügen
+    public static void fahrzeugHinzufuegen() {
+        System.out.println("\n--- Neues Fahrzeug hinzufügen ---");
+
+        System.out.println("Typ wählen: 1=PKW, 2=LKW, 3=Motorrad, 4=Fahrrad");
+        String typ = myScanner.nextLine().trim();
+
+        System.out.print("Hersteller: ");
+        String hersteller = myScanner.nextLine();
+
+        System.out.print("Modell: ");
+        String modell = myScanner.nextLine();
+
+        System.out.print("Baujahr: ");
+        int baujahr = Integer.parseInt(myScanner.nextLine());
+
+        FahrzeugService.fahrzeugHinzufuegen(typ, hersteller, modell, baujahr);
+
+    }
+
+    //Zeigt alle Fahrzeug
     public static void anzeigenAlle ( ArrayList<Fahrzeug> liste){
         for (Fahrzeug myFahrzeug : liste) {
             System.out.println("\nFahrzeug-ID: " + myFahrzeug.getId() + "\nTyp: " + myFahrzeug.getClass().getSimpleName());
@@ -40,6 +62,7 @@ public class FahrzeugView {
         }
     }
 
+    //Ein Fahrzeug nach ID suchen
     public static void fahrzeugSuchen() {
         System.out.println("\n--- Fahrzeug suchen ---");
 
@@ -64,26 +87,7 @@ public class FahrzeugView {
         }
     }
 
-
-    public static void fahrzeugHinzufuegen() {
-        System.out.println("\n--- Neues Fahrzeug hinzufügen ---");
-
-        System.out.println("Typ wählen: 1=PKW, 2=LKW, 3=Motorrad, 4=Fahrrad");
-        String typ = myScanner.nextLine().trim();
-
-        System.out.print("Hersteller: ");
-        String hersteller = myScanner.nextLine();
-
-        System.out.print("Modell: ");
-        String modell = myScanner.nextLine();
-
-        System.out.print("Baujahr: ");
-        int baujahr = Integer.parseInt(myScanner.nextLine());
-
-        FahrzeugService.fahrzeugHinzufuegen(typ, hersteller, modell, baujahr);
-
-    }
-
+    //Fahrzeug Löschen
     public static void fahrzeugLoeschen() {
         System.out.println("\n--- Fahrzeug löschen ---");
 
@@ -125,6 +129,7 @@ public class FahrzeugView {
         }
     }
 
+    //Fahrzeug fahren(Kilometr)
     public static void fahrzeugFahren() {
         System.out.println("\n--- Fahrzeug fahren ---");
 
@@ -143,6 +148,7 @@ public class FahrzeugView {
         }
     }
 
+    //Wartungtermin einfügen
     public static void wartungEintragen() {
         System.out.println("\n--- Wartungstermin eintragen ---");
 
@@ -166,6 +172,7 @@ public class FahrzeugView {
 
     }
 
+    //Fahrzeug update
     public static void fahrzeugBearbeiten() {
         System.out.println("\n--- Fahrzeug Bearbeiten ---");
 
@@ -196,6 +203,7 @@ public class FahrzeugView {
 
     }
 
+    //Tanken
     public static void fahrzeugTanken() {
         System.out.println("\n--- Fahrzeug tanken ---");
 
