@@ -7,10 +7,15 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-public class DatabaseManager {
+public final class DatabaseManager {
 
     // Statische Variable für die Datenbankverbindung
     private static Connection myFuhrpark_DB_Connection = null;
+
+    // Privater Konstruktor verhindert das entstehen lassen von Objekten dieser Klasse
+    private DatabaseManager() {
+
+    }
 
     // Methode zum Abrufen einer aktiven Verbindung
     public static Connection getMyFuhrpark_DB_Connection() throws SQLException {
