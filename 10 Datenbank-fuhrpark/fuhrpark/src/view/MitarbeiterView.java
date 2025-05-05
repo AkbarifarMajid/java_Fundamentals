@@ -56,7 +56,7 @@ public class MitarbeiterView {
         } else {
             System.out.println("--- Mitarbeiterliste ---");
             for (var mitarbeiter : liste) {
-                System.out.printf("ID: %d - %s %s\n Position: (%s), Tel: %s%n",
+                System.out.printf("ID: %d - %s %s\nPosition: (%s)\nTel: %s%n",
                         mitarbeiter.getId(), mitarbeiter.getVorname(), mitarbeiter.getNachname(),
                         mitarbeiter.getPosition(),
                         mitarbeiter.getTelefonnummer());

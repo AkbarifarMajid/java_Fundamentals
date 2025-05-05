@@ -30,7 +30,7 @@ public class LKW extends Fahrzeug {
 
     @Override
     public void anzeigen() {
-        System.out.println("LKW: " + hersteller + " " + modell + ", Baujahr " + baujahr + "\n Ladegewicht: " + ladegewicht + " Tonnen" +  " Kilometerstand : "+ getKilometerstand()
+        System.out.println("LKW: " + hersteller + " " + modell + ", Baujahr " + baujahr + "\nLadegewicht: " + ladegewicht + " Tonnen" +  " Kilometerstand : "+ getKilometerstand()
                 + " Kraftstoff: " + getKraftstoff() + "\nParkPlatz: "+ getStandort()+ " Warungstermin: " + getWartungstermine()
 
         );
