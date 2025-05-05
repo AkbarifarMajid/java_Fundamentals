@@ -1,0 +1,7 @@
+1; Alle Mannschaften anzeigen
+2; Neue Mannschaft erstellen
+3; Mitglied zur Mannschaft hinzufügen
+4; Trainer zur Mannschaft hinzufügen
+5; Mitglied aus Mannschaft entfernen
+6; Mannschaft löschen
+z; Zurück zum Hauptmenü

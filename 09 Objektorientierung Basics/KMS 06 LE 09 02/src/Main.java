@@ -1,6 +1,3 @@
-
-package view;
-
 import model.*;
 import controller.VereinsController;
 

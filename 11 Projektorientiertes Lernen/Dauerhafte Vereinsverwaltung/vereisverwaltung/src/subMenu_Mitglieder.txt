@@ -1,0 +1,6 @@
+1; Alle Mitglieder anzeigen
+2; Mitglied suchen
+3; Mitglied hinzufügen
+4; Mitglied löschen
+5; Mitglied bearbeiten
+z; Zurück zum Hauptmenü

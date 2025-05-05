@@ -1,0 +1,5 @@
+1; Mitglieder verwalten
+2; Trainer verwalten
+3; Mannschaften verwalten
+4; Verein Informationen anzeigen
+x; Programm beenden
