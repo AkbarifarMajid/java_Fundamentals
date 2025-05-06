@@ -18,13 +18,13 @@ public final class DatabaseManager {
 
     public static Connection getConnection() {
         if (verbindung == null) {
-            try (InputStream input = DatabaseManager.class.getClassLoader().getResourceAsStream("db.properties")) {
-                Properties props = new Properties();
-                props.load(input);
+            try (InputStream input_info = DatabaseManager.class.getClassLoader().getResourceAsStream("db.properties")) {
+                Properties myproperties = new Properties();
+                myproperties.load(input_info);
 
-                String url = props.getProperty("url");
-                String user = props.getProperty("user");
-                String password = props.getProperty("password");
+                String url = myproperties.getProperty("url");
+                String user = myproperties.getProperty("user");
+                String password = myproperties.getProperty("password");
 
                 verbindung = DriverManager.getConnection(url, user, password);
                 System.out.println("Connected");

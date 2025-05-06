@@ -69,7 +69,8 @@ public class HauptmenueView {
                 case "z":
                     break;
                 default:
-                    System.out.println("Ungültige Eingabe im Untermenü.");            }
+                    System.out.println("Ungültige Eingabe im Untermenü.");
+            }
 
         } while (!auswahl.equals("z"));
     }
