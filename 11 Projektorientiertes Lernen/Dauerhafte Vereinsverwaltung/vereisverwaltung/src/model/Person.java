@@ -17,6 +17,15 @@ public abstract class Person {
         this.kontaktinfo = kontaktinfo;
     }
 
+    public Person(String vorname, String nachname, Geschlecht geschlecht, int alter, Kontaktinfo kontaktinfo) {
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.geschlecht = geschlecht;
+        this.alter = alter;
+        this.kontaktinfo = kontaktinfo;
+    }
+
+
     // Getter und Setter
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
