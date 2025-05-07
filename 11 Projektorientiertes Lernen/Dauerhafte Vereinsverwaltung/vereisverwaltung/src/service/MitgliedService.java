@@ -13,7 +13,7 @@ public class MitgliedService {
     // Liste aller Mitglieder abrufen
     public static List<Mitglied> alleMitgliederAnzeigen() {
         return MitgliedDAO.anzeigenAlleMitglied();
-    }//------ End MitgliedService
+    }//------ End alleMitgliederAnzeigen
 
     // Neuen Mitglied hinzufügen
     public static boolean neuesMitgliedHinzufugen(Mitglied mitglied){

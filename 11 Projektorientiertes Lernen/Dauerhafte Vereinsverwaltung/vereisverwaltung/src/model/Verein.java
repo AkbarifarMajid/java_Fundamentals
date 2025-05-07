@@ -21,6 +21,7 @@ public class Verein {
         this.mannschaften = new ArrayList<>();
     }
 
+
     // Getter & Setter
 
 

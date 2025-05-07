@@ -43,9 +43,9 @@ public abstract class Person {
     @Override
     public String toString() {
         return "ID: " + id +
-                ", Name: " + vorname + " " + nachname +
-                ", Geschlecht: " + geschlecht +
-                ", Alter: " + alter +
-                ", Kontakt: " + kontaktinfo;
+                "\nName: " + vorname + " " + nachname +
+                "\nGeschlecht: " + geschlecht +
+                "\nAlter: " + alter +
+                "\nKontakt: " + kontaktinfo;
     }
 }

@@ -22,7 +22,7 @@ public class ListManupolation {
             else if  (element instanceof Double) {
                 double resultDouble = (double)element + (double) faktor;
                 list.set(counter, resultDouble);
-                System.out.println("DOUBLE: " + resultDouble );
+                System.out.println("DOUBLE: " + resultDouble );0
             }
 
             else {

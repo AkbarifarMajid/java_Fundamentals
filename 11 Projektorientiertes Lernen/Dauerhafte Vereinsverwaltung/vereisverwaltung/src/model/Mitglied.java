@@ -19,6 +19,6 @@ public class Mitglied extends Person {
 
     @Override
     public String toString() {
-        return super.toString() + ", Altersgruppe: " + altersgruppe;
+        return super.toString() + "\nAltersgruppe: " + altersgruppe;
     }
 }

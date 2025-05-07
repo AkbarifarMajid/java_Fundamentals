@@ -13,6 +13,12 @@ public class Trainer extends Person {
         this.lizenzstufe = lizenzstufe;
     }
 
+    //Konstruktor für einen Trainer.
+    public Trainer( String vorname, String nachname, Geschlecht geschlecht, int alter, Kontaktinfo kontaktinfo, Rolle rolle, String lizenzstufe) {
+        super( vorname, nachname, geschlecht, alter, kontaktinfo);
+        this.rolle = rolle;
+        this.lizenzstufe = lizenzstufe;
+    }
     //Getter und Setter
 
     public Rolle getRolle() {return rolle;}
@@ -23,7 +29,7 @@ public class Trainer extends Person {
     @Override
     public String toString() {
         return super.toString() +
-                ", Rolle: " + rolle.getBeschreibung() +"(" + rolle.name()+  ")"+
-                ", Lizenzstufe: " + lizenzstufe;
+                "\nRolle: " + rolle.getBeschreibung() +"(" + rolle.name()+  ")"+
+                "\nLizenzstufe: " + lizenzstufe;
     }
 }

@@ -1,7 +1,7 @@
 package view;
 
 import service.MitgliedService;
-import model.Mitglied;
+//import model.Mitglied;
 
 import java.util.List;
 import java.util.Scanner;
@@ -37,7 +37,8 @@ public class MitgliedView {
         System.out.print("Nachname: ");
         String nachname = myScanner.nextLine().trim();
 
-        System.out.print("Geschlecht (MAENNLICH/WEIBLICH/DIVERS): ");
+        System.out.println("Verfügbare Geschlechter: MAENNLICH, WEIBLICH, DIVERS");
+        System.out.print("Geschlecht: ");
         String geschlechtEingabe = myScanner.nextLine().trim().toUpperCase();
 
         System.out.print("Alter : ");
@@ -52,9 +53,9 @@ public class MitgliedView {
         System.out.print("Adresse: ");
         String adresse = myScanner.nextLine().trim();
 
-        System.out.print("Altersgruppe (U13/U15/U17/U19/U23/ERWACHSENE): ");
+        System.out.println("Verfügbare Altersgruppen: U13, U15, U17, U19, U23, ERWACHSENE");
+        System.out.print("Altersgruppe: ");
         String altersgruppeEingabe = myScanner.nextLine().trim().toUpperCase();
-
         try{
             Mitglied neuMitglied = new Mitglied(
                     vorname,
@@ -68,11 +69,11 @@ public class MitgliedView {
             MitgliedService.neuesMitgliedHinzufugen(neuMitglied);
 
 
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException error) {
             System.out.println(" Eingabe bei Geschlecht oder Altersgruppe ist falsch!");
 
         }catch (Exception error) {
-            System.out.println("beim Erstellen des Mitglieds: " + error.getMessage());
+            System.out.println("beim Erstellen des Mitglieds gibt es Problem: " + error.getMessage());
         }
     }//----End mitgliedHinzufuegen
 
@@ -88,10 +89,10 @@ public class MitgliedView {
             System.out.println(mitglied);
 
         }catch (NumberFormatException error){
-            System.out.println(" Bitte geben Sie eine gültige ID ein.");
+            System.out.println(" Bitte geben Sie eine gültige Mitglied ID ein.");
 
         }catch (Exception error){
-            System.out.println("bei der Suchen gibt es Problem: ." + error.getMessage());
+            System.out.println("bei der Suchen Mitglied gibt es Problem: ." + error.getMessage());
         }
 
     }// --- End mitgliedSuchen

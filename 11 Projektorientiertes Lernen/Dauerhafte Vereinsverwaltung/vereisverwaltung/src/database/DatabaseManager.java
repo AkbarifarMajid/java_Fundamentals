@@ -17,25 +17,27 @@ public final class DatabaseManager {
     //Gibt die Singleton-Instanz der Datenbankverbindung zurück.
 
     public static Connection getConnection() {
-        if (verbindung == null) {
-            try (InputStream input_info = DatabaseManager.class.getClassLoader().getResourceAsStream("db.properties")) {
-                Properties myproperties = new Properties();
-                myproperties.load(input_info);
+        try {
+            if (verbindung == null || verbindung.isClosed()) {
+                try (InputStream input = DatabaseManager.class.getClassLoader().getResourceAsStream("db.properties")) {
+                    Properties props = new Properties();
+                    props.load(input);
 
-                String url = myproperties.getProperty("url");
-                String user = myproperties.getProperty("user");
-                String password = myproperties.getProperty("password");
+                    String url = props.getProperty("url");
+                    String user = props.getProperty("user");
+                    String password = props.getProperty("password");
 
-                verbindung = DriverManager.getConnection(url, user, password);
-                System.out.println("Connected");
-
-            } catch (Exception e) {
-                System.out.println("beim Herstellen der Datenbankverbindung gibt es Problem: " + e.getMessage());
+                    verbindung = DriverManager.getConnection(url, user, password);
+                    System.out.println("Connected");
+                }
             }
+        } catch (Exception e) {
+            System.out.println("beim Herstellen der Datenbankverbindung gibt es Problem: " + e.getMessage());
         }
 
         return verbindung;
     }
+
 
    //Trennt die Verbindung zur Datenbank .
 
