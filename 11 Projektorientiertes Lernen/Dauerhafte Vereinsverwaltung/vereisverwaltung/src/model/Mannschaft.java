@@ -18,6 +18,15 @@ public class Mannschaft {
         this.trainerListe = new ArrayList<>();
     }
 
+    // Konstruktor ohne ID – für neue Einträge vor dem Speichern in der DB
+    public Mannschaft(String name, String liga) {
+        this.name = name;
+        this.liga = liga;
+        this.mitglieder = new ArrayList<>();
+        this.trainerListe = new ArrayList<>();
+    }
+
+
 
 
     // Getter & Setter
@@ -40,7 +49,8 @@ public class Mannschaft {
 
     @Override
     public String toString() {
-        return "Mannschaft: " + name + ", Liga: " + liga +
+        return "ID: " + id +
+                "\nMannschaft: " + name + ", Liga: " + liga +
                 ", Mitglieder: " + mitglieder.size() +
                 ", Trainer: " + trainerListe.size();
     }

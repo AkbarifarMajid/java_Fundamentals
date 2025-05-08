@@ -15,7 +15,6 @@ public final class DatabaseManager {
     private static Connection verbindung;
 
     //Gibt die Singleton-Instanz der Datenbankverbindung zurück.
-
     public static Connection getConnection() {
         try {
             if (verbindung == null || verbindung.isClosed()) {
@@ -28,7 +27,7 @@ public final class DatabaseManager {
                     String password = props.getProperty("password");
 
                     verbindung = DriverManager.getConnection(url, user, password);
-                    System.out.println("Connected");
+
                 }
             }
         } catch (Exception e) {
@@ -40,7 +39,6 @@ public final class DatabaseManager {
 
 
    //Trennt die Verbindung zur Datenbank .
-
     public static void verbindungSchliessen() {
         if (verbindung != null) {
             try {
@@ -52,4 +50,5 @@ public final class DatabaseManager {
             }
         }
     }
+
 }

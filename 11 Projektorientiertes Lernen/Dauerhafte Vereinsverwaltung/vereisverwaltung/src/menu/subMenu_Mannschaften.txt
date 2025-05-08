@@ -3,5 +3,8 @@
 3; Mitglied zur Mannschaft hinzufügen
 4; Trainer zur Mannschaft hinzufügen
 5; Mitglied aus Mannschaft entfernen
-6; Mannschaft löschen
+6; Trainer aus Mannschaft entfernen
+7; Mannschaft löschen
+8; Mitglieder einer Mannschaft anzeigen
+9; Trainer einer Mannschaft anzeigen
 z; Zurück zum Hauptmenü

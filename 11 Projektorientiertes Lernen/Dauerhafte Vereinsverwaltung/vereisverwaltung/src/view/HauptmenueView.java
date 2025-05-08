@@ -39,7 +39,7 @@ public class HauptmenueView {
             }
 
         } while (!hauptOption.equals("x"));
-    }
+    } // End starten
 
     // Zeigt ein Untermenü basierend auf der gegebenen Datei und steuert die Auswahl
     private void zeigeSubMenu(String dateiName, String titel) {
@@ -63,7 +63,7 @@ public class HauptmenueView {
             }
 
         } while (!auswahl.equals("z"));
-    }
+    } // End zeigeSubMenu
 
     private void mitgliederAktionen(String auswahl) {
         switch (auswahl) {
@@ -87,7 +87,7 @@ public class HauptmenueView {
             default:
                 System.out.println("Ungültige Eingabe im Mitglieder-Menü.");
         }
-    }
+    } // End mitgliederAktionen
 
     private void trainerAktionen(String auswahl) {
         switch (auswahl) {
@@ -111,32 +111,42 @@ public class HauptmenueView {
             default:
                 System.out.println("Ungültige Eingabe im Trainer-Menü.");
         }
-    }
+    } // End trainerAktionen
 
     private void mannschaftenAktionen(String auswahl) {
         switch (auswahl) {
             case "1":
-                System.out.println("👉 Mannschaften anzeigen (noch nicht implementiert)");
+                MannschafrView.mannschaftenAnzeigen();
                 break;
             case "2":
-                System.out.println("👉 Neue Mannschaft erstellen (noch nicht implementiert)");
+                MannschafrView.mannschaftHinzufuegen();
                 break;
             case "3":
-                System.out.println("👉 Mitglied zur Mannschaft hinzufügen (noch nicht implementiert)");
+                MannschafrView.mitgliedZurMannschaft();
                 break;
             case "4":
-                System.out.println("👉 Trainer zur Mannschaft hinzufügen (noch nicht implementiert)");
+                MannschafrView.trainerZurMannschaft();
                 break;
             case "5":
-                System.out.println("👉 Mitglied aus Mannschaft entfernen (noch nicht implementiert)");
+                MannschafrView.loschen_Mi_Aus_Manschaft();
                 break;
             case "6":
-                System.out.println("👉 Mannschaft löschen (noch nicht implementiert)");
+                MannschafrView.loschen_Tra_Aus_Manschaft();
+                break;
+            case "7":
+                MannschafrView.Loeschen_mannschaft();
+                break;
+            case "8":
+                MannschafrView.alleMitgliederInMannschaft();
+                break;
+            case "9":
+                MannschafrView.alleTrainerInMannschaft();
                 break;
             case "z":
                 break;
             default:
                 System.out.println("Ungültige Eingabe im Mannschaften-Menü.");
         }
-    }
+    } // End mannschaftenAktionen
+
 }
