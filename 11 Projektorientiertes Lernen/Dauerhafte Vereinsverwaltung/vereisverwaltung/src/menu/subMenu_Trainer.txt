@@ -1,6 +1,0 @@
-1; Alle Trainer anzeigen
-2; Trainer suchen
-3; Trainer hinzufügen
-4; Trainer löschen
-5; Trainer bearbeiten
-z; Zurück zum Hauptmenü
