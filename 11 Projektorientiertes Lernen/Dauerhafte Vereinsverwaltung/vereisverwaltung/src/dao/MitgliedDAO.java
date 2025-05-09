@@ -191,4 +191,9 @@ public class MitgliedDAO {
         }//End bearbeiten_Mitglied
 
 
+
+
+
+
+
 }//End MitgliedDAO

@@ -29,7 +29,7 @@ public class HauptmenueView {
                     zeigeSubMenu("menu/subMenu_Mannschaften.txt", "MANNSCHAFTEN-Menü");
                     break;
                 case "4":
-                    System.out.println("📋 Vereinsinformationen anzeigen (noch nicht implementiert)");
+                    VereinView.zeigeVereinInformationen();
                     break;
                 case "x":
                     System.out.println("Programm beendet.");
