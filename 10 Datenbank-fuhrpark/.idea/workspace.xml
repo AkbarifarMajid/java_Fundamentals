@@ -4,76 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba43a423-379b-47f7-8203-d5882f0c2041" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="ba43a423-379b-47f7-8203-d5882f0c2041" name="Changes" comment=".">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dump20250504.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/10 Datenbank-fuhrpark.iml" beforeDir="false" afterPath="$PROJECT_DIR$/10 Datenbank-fuhrpark.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EER Diagram.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/.idea/libraries/mysql_connector_j_8_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/Dump20250504.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/database/DatabaseManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/database/FahrradDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/database/FahrzeugDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/database/LkwDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/database/MitarbeiterDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/database/MotorradDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/database/PkwDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/db.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/fuhrpark.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/menu_haupt.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/model/Fahrrad.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/model/Fahrzeug.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/model/LKW.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/model/Mitarbeiter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/model/Motorrad.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/model/PKW.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/service/FahrzeugService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/service/MitarbeiterService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/database/DatabaseManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/database/FahrradDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/database/FahrzeugDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/database/LkwDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/database/MitarbeiterDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/database/MotorradDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/database/PkwDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/db.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/menu_haupt.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/model/Fahrrad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/model/Fahrzeug.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/model/LKW.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/model/Mitarbeiter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/model/Motorrad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/model/PKW.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/service/FahrzeugService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/service/MitarbeiterService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/subMenu_Anzeigen.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/subMenu_Bearbeiten.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/subMenu_Hinzufügen.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/subMenu_Leistungen.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/subMenu_Löschen.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/view/FahrzeugView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/view/HauptmenueView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/view/MenuLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/view/MenuPrinter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/src/view/MitarbeiterView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/subMenu_Anzeigen.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/subMenu_Bearbeiten.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/subMenu_Hinzufügen.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/subMenu_Leistungen.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/subMenu_Löschen.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/view/FahrzeugView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/view/HauptmenueView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/view/MenuLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/view/MenuPrinter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuhrpark/view/MitarbeiterView.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,21 +17,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "AkbarifarMajid"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AkbarifarMajid&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/AkbarifarMajid/java_Fundamentals.git",
-    "accountId": "5d7967be-8b48-4e79-9ea1-8f16e880819c"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AkbarifarMajid/java_Fundamentals.git&quot;,
+    &quot;accountId&quot;: &quot;5d7967be-8b48-4e79-9ea1-8f16e880819c&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2wuH7mo2FzNmgf92YEszcuCx0ww" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -111,7 +45,11 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/052240/source/java_Fundamentals/10 Datenbank-fuhrpark"
+    "last_opened_file_path": "C:/Users/052240/source/java_Fundamentals/10 Datenbank-fuhrpark",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RunManager">
@@ -137,6 +75,27 @@
       <option name="presentableId" value="Default" />
       <updated>1746884373439</updated>
     </task>
+    <task id="LOCAL-00001" summary=".">
+      <option name="closed" value="true" />
+      <created>1746884775148</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1746884775148</updated>
+    </task>
+    <task id="LOCAL-00002" summary=".">
+      <option name="closed" value="true" />
+      <created>1746884898422</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746884898422</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
