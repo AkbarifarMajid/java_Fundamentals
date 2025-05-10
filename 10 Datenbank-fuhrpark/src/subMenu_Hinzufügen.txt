@@ -1,0 +1,3 @@
+1;Fahrzeug hinzufügen
+2;Mitarbeiter hinzufügen
+z;Zurück
