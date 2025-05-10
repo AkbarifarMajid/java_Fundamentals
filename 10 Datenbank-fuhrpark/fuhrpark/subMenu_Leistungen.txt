@@ -1,5 +1,0 @@
-1;Fahrzeug fahren
-2;Fahrzeug tanken
-3;Wartung eintragen
-4;Fahrzeug einem Mitarbeiter zuweisen
-z;Zurück
