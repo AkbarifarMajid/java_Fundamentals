@@ -1,3 +1,0 @@
-1;Fahrzeug löschen
-2;Mitarbeiter löschen
-z;Zurück
