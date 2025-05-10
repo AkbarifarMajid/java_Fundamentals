@@ -47,6 +47,23 @@ public class MitarbeiterService {
 
     }
 
+
+    // Bearbeitet ein Feld eines Mitarbeiters
+    public static boolean mitarbeiter_Bearbeiten(int id,String vorname, String nachname, String position, String telefon) {
+        Mitarbeiter m = MitarbeiterDAO.findeNachId(id);
+        if (m == null) {
+            return false;
+        }
+
+        if (vorname != null) m.setVorname(vorname);
+        if (nachname != null) m.setNachname(nachname);
+        if (position != null) m.setPosition(position);
+        if (telefon != null) m.setTelefonnummer(telefon);
+
+        return MitarbeiterDAO.mitarbeiter_Update(m);
+    }
+// End mitarbeiter_Bearbeiten
+    /*
     // Bearbeitet ein Feld eines Mitarbeiters
     public static boolean mitarbeiter_Bearbeiten(int mitarbeiter_Id,String feld_Mitarbeiter, String neu_Wert){
         Mitarbeiter mitarbeiter = MitarbeiterDAO.findeNachId(mitarbeiter_Id);
@@ -71,5 +88,7 @@ public class MitarbeiterService {
 
         return MitarbeiterDAO.mitarbeiter_Update(mitarbeiter);
     }
+
+     */
 
 }

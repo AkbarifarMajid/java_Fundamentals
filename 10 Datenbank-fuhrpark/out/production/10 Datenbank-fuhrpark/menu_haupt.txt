@@ -1,0 +1,8 @@
+1; anzeigen
+2; hinzufügen
+3;löschen
+4;Bearbeiten
+5;Leistungen
+
+x;Beenden
+

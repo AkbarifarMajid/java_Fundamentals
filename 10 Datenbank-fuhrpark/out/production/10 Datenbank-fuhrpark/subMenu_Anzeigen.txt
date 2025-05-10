@@ -1,0 +1,6 @@
+1;Alle Fahrzeuge anzeigen
+2;Alle Mitarbeiter anzeigen
+
+3;Ein Fahrzeug suchen
+4;Ein Mitarbeiter suchen
+z;Zurück

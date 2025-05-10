@@ -107,6 +107,38 @@ public class MitarbeiterDAO {
         }
     }
 
+
+    public static boolean mitarbeiter_Update(Mitarbeiter m) {
+        String sql = """
+        UPDATE mitarbeiter
+        SET vorname_Mitarbeiter = ?, 
+            nachname_Mitarbeiter = ?, 
+            position_Mitarbeiter = ?, 
+            telefon_Mitarbeiter = ?
+        WHERE id_Mitarbeiter = ?
+        """;
+
+        try (Connection conn = DatabaseManager.getMyFuhrpark_DB_Connection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, m.getVorname());
+            pstmt.setString(2, m.getNachname());
+            pstmt.setString(3, m.getPosition());
+            pstmt.setString(4, m.getTelefonnummer());
+            pstmt.setInt(5, m.getId());
+
+            int rows = pstmt.executeUpdate();
+            return rows > 0;
+
+        } catch (SQLException e) {
+            System.out.println("❌ Fehler beim Aktualisieren: " + e.getMessage());
+            return false;
+        }
+    }
+
+
+
+/*
     // Aktualisiert die Mitarbeiterdaten
     public static boolean mitarbeiter_Update(Mitarbeiter mitarbeiter){
         String sql_Update = "UPDATE mitarbeiter SET vorname_Mitarbeiter=?,nachname_Mitarbeiter = ?, position_Mitarbeiter = ?, telefon_Mitarbeiter = ? where id_Mitarbeiter= ?";
@@ -120,7 +152,8 @@ public class MitarbeiterDAO {
             statment.setString(4,mitarbeiter.getTelefonnummer());
             statment.setInt(5,mitarbeiter.getId());
 
-            return statment.executeUpdate() > 0;
+            int rows = statment.executeUpdate();
+            return rows > 0;
 
         }catch(SQLException error){
             System.out.println("Bei update Mitarbeiter gibt es Problem" + error.getMessage());
@@ -128,5 +161,7 @@ public class MitarbeiterDAO {
         }
 
     }
+
+ */
 
 }

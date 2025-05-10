@@ -157,6 +157,7 @@ public class MitgliedView {
             System.out.print("Vorname [" + altMitglied_info.getVorname() + "]: ");
             String vorname = myScanner.nextLine().trim();
             if (vorname.isEmpty()) vorname = altMitglied_info.getVorname();
+            //if (!vorname.isEmpty()) altMitglied_info.setVorname(vorname);
 
             System.out.print("Nachname [" + altMitglied_info.getNachname() + "]: ");
             String nachname = myScanner.nextLine().trim();
