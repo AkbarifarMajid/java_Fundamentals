@@ -145,6 +145,85 @@ public class TrainerView {
     }// ---End trainerLoschen
 
 
+
+    public static void trainerBearbeiten() {
+        System.out.print("Bitte geben Sie die ID des Trainers ein, der bearbeitet werden soll: ");
+        try {
+            int trainerId = Integer.parseInt(myScanner.nextLine());
+            Trainer alt_Trainer = TrainerService.suchenTrainer(trainerId);
+
+            if (alt_Trainer == null) {
+                System.out.println("Es gibt Kein Trainer mit dieser ID: " + trainerId);
+                return;
+            }
+
+            System.out.println("\nAktuelle Daten des Trainers:");
+            System.out.println(alt_Trainer);
+            System.out.println("\nDrücken Sie Enter, um den bisherigen Wert zu behalten.");
+
+            System.out.print("Vorname [" + alt_Trainer.getVorname() + "]: ");
+            String vorname = myScanner.nextLine().trim();
+            if (!vorname.isEmpty()) alt_Trainer.setVorname(vorname);
+
+            System.out.print("Nachname [" + alt_Trainer.getNachname() + "]: ");
+            String nachname = myScanner.nextLine().trim();
+            if (!nachname.isEmpty()) alt_Trainer.setNachname(nachname);
+
+            System.out.print("Geschlecht (" + alt_Trainer.getGeschlecht() + "): ");
+            String geschlechtInput = myScanner.nextLine().trim().toUpperCase();
+            if (!geschlechtInput.isEmpty()) {
+                alt_Trainer.setGeschlecht(Geschlecht.valueOf(geschlechtInput));
+            }
+
+            System.out.print("Alter [" + alt_Trainer.getAlter() + "]: ");
+            String alterInput = myScanner.nextLine().trim();
+            if (!alterInput.isEmpty()) {
+                alt_Trainer.setAlter(Integer.parseInt(alterInput));
+            }
+
+            System.out.print("E-Mail [" + alt_Trainer.getKontaktinfo().getEmail() + "]: ");
+            String email = myScanner.nextLine().trim();
+            if (!email.isEmpty()) alt_Trainer.getKontaktinfo().setEmail(email);
+
+            System.out.print("Telefon [" + alt_Trainer.getKontaktinfo().getTelefonnummer() + "]: ");
+            String telefon = myScanner.nextLine().trim();
+            if (!telefon.isEmpty()) alt_Trainer.getKontaktinfo().setTelefonnummer(telefon);
+
+            System.out.print("Adresse [" + alt_Trainer.getKontaktinfo().getAdresse() + "]: ");
+            String adresse = myScanner.nextLine().trim();
+            if (!adresse.isEmpty()) alt_Trainer.getKontaktinfo().setAdresse(adresse);
+
+            System.out.print("Rolle (" + alt_Trainer.getRolle() + "): ");
+            String rolleInput = myScanner.nextLine().trim().toUpperCase();
+            if (!rolleInput.isEmpty()) {
+                alt_Trainer.setRolle(Rolle.valueOf(rolleInput));
+            }
+
+            System.out.print("Lizenzstufe [" + alt_Trainer.getLizenzstufe() + "]: ");
+            String lizenz = myScanner.nextLine().trim();
+            if (!lizenz.isEmpty()) alt_Trainer.setLizenzstufe(lizenz);
+
+            boolean result = TrainerService.bearbeitenTrainer(alt_Trainer);
+            if (result) {
+                System.out.printf("Trainer mit ID: %d hau neu Wert.",trainerId);
+            } else {
+                System.out.println("Beim Speichern des Trainers ist ein Fehler aufgetreten.");
+            }
+
+        } catch (NumberFormatException error) {
+            System.out.println("Ungültige Zahleneingabe.");
+        } catch (IllegalArgumentException error) {
+            System.out.println("Ungültiger Wert bei Geschlecht oder Rolle.");
+        } catch (Exception error) {
+            System.out.println(" beim Bearbeiten gibt es Problem: " + error.getMessage());
+        }
+    }
+
+
+
+
+
+    /*
     // Bearbeitet ein bestehendes Trainer anhand der ID
     public static void trainerBearbeiten(){
         System.out.print("Bitte geben Sie die ID des Trainer ein, das bearbeitet werden soll: ");
@@ -235,6 +314,8 @@ public class TrainerView {
 
 
     }// ---trainerBearbeiten
+
+     */
 
 
 }

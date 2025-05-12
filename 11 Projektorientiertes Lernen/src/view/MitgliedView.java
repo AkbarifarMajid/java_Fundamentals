@@ -138,6 +138,180 @@ public class MitgliedView {
 
 
     // Bearbeitet ein bestehendes Mitglied anhand der ID
+    public static void mitgliedBearbeiten() {
+        System.out.print("Bitte geben Sie die ID des Mitglieds ein, das bearbeitet werden soll: ");
+
+        try {
+            int id_Mitglied = Integer.parseInt(myScanner.nextLine());
+            Mitglied altMitglied = MitgliedService.suchenMitglied(id_Mitglied);
+
+            if (altMitglied == null) {
+                System.out.println("Mitglied mit dieser ID nicht gefunden.");
+                return;
+            }
+
+            System.out.println("\nAktuelle Daten des Mitglieds:");
+            System.out.println(altMitglied);
+
+            System.out.println("\nDrücken Sie Enter, um den bisherigen Wert zu behalten.");
+
+            System.out.print("Vorname [" + altMitglied.getVorname() + "]: ");
+            String vorname = myScanner.nextLine().trim();
+            if (!vorname.isEmpty()) altMitglied.setVorname(vorname);
+
+            System.out.print("Nachname [" + altMitglied.getNachname() + "]: ");
+            String nachname = myScanner.nextLine().trim();
+            if (!nachname.isEmpty()) altMitglied.setNachname(nachname);
+
+            /*
+            System.out.print("Geschlecht (" + altMitglied.getGeschlecht() + "): ");
+            String geschlechtInput = myScanner.nextLine().trim().toUpperCase();
+            if (!geschlechtInput.isEmpty()) altMitglied.setGeschlecht(Geschlecht.valueOf(geschlechtInput));
+
+             */
+            System.out.print("Geschlecht (M/W) [" + altMitglied.getGeschlecht() + "]: ");
+            String geschlechtInput = myScanner.nextLine().trim().toUpperCase();
+            if (!geschlechtInput.isEmpty()) {
+                if (geschlechtInput.equals("M")) {
+                    altMitglied.setGeschlecht(Geschlecht.MAENNLICH);
+                } else if (geschlechtInput.equals("W")) {
+                    altMitglied.setGeschlecht(Geschlecht.WEIBLICH);
+                }
+            }
+
+
+            System.out.print("Alter [" + altMitglied.getAlter() + "]: ");
+            String alterInput = myScanner.nextLine().trim();
+            if (!alterInput.isEmpty()) altMitglied.setAlter(Integer.parseInt(alterInput));
+
+            System.out.print("E-Mail [" + altMitglied.getKontaktinfo().getEmail() + "]: ");
+            String email = myScanner.nextLine().trim();
+            if (!email.isEmpty()) altMitglied.getKontaktinfo().setEmail(email);
+
+            System.out.print("Telefon [" + altMitglied.getKontaktinfo().getTelefonnummer() + "]: ");
+            String telefon = myScanner.nextLine().trim();
+            if (!telefon.isEmpty()) altMitglied.getKontaktinfo().setTelefonnummer(telefon);
+
+            System.out.print("Adresse [" + altMitglied.getKontaktinfo().getAdresse() + "]: ");
+            String adresse = myScanner.nextLine().trim();
+            if (!adresse.isEmpty()) altMitglied.getKontaktinfo().setAdresse(adresse);
+
+            System.out.print("Altersgruppe (" + altMitglied.getAltersgruppe() + "): ");
+            String altersgruppeInput = myScanner.nextLine().trim().toUpperCase();
+            if (!altersgruppeInput.isEmpty()) altMitglied.setAltersgruppe(Altersgruppe.valueOf(altersgruppeInput));;
+/*
+            // Mitglied aktualisieren
+            altMitglied.setVorname(vorname);
+            altMitglied.setNachname(nachname);
+            altMitglied.setGeschlecht(geschlecht);
+            altMitglied.setAlter(alter);
+            altMitglied.setAltersgruppe(altersgruppe);
+            altMitglied.getKontaktinfo().setEmail(email);
+            altMitglied.getKontaktinfo().setTelefonnummer(telefon);
+            altMitglied.getKontaktinfo().setAdresse(adresse);
+
+ */
+
+            boolean result = MitgliedService.bearbeitenMitglied(altMitglied);
+            if (result) {
+                System.out.printf("Mitglied mit ID: %d hat neu wert.",altMitglied.getId());
+            } else {
+                System.out.println("beim aktualisiert gibt es Problem.");
+            }
+
+        } catch (NumberFormatException error) {
+            System.out.println("bei ID oder Alter gibt es falsche wert.");
+        } catch (IllegalArgumentException error) {
+            System.out.println("Eingabe bei Geschlecht oder Altersgruppe is nich gültig.");
+        } catch (Exception error) {
+            System.out.println("beim Bearbeiten Mitglied gibt es Problem !: " + error.getMessage());
+        }
+    }
+
+
+    /*
+
+    // Bearbeitet ein bestehendes Mitglied anhand der ID
+    public static void mitgliedBearbeiten() {
+        System.out.print("Bitte geben Sie die ID des Mitglieds ein, das bearbeitet werden soll: ");
+
+        try {
+            int id = Integer.parseInt(myScanner.nextLine());
+            Mitglied mitglied = MitgliedService.suchenMitglied(id);
+
+            if (mitglied == null) {
+                System.out.printf("Mitglied mit ID: %d nicht gefunden.",id);
+                return;
+            } // End if
+
+            System.out.println("\nGefundener Mitglied:");
+            System.out.println(mitglied);
+
+            System.out.println("\nDrücken Sie Enter, um den alten Wert zu behalten.");
+
+            System.out.print("Vorname [" + mitglied.getVorname() + "]: ");
+            String vorname = myScanner.nextLine();
+            if (!vorname.isBlank()) mitglied.setVorname(vorname);
+
+            System.out.print("Nachname [" + mitglied.getNachname() + "]: ");
+            String nachname = myScanner.nextLine();
+            if (!nachname.isBlank()) mitglied.setNachname(nachname);
+
+            System.out.print("Geschlecht [" + mitglied.getGeschlecht() + "]: ");
+            String geschlechtInput = myScanner.nextLine().toUpperCase();
+            if (!geschlechtInput.isBlank()) {
+                try {
+                    mitglied.setGeschlecht(Geschlecht.valueOf(geschlechtInput));
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Ungültiger Geschlecht.");
+                }
+            }
+
+            System.out.print("Alter [" + mitglied.getAlter() + "]: ");
+            String alterInput = myScanner.nextLine();
+            if (!alterInput.isBlank()) mitglied.setAlter(Integer.parseInt(alterInput));
+
+            System.out.print("E-Mail [" + mitglied.getKontaktinfo().getEmail() + "]: ");
+            String email = myScanner.nextLine();
+            if (!email.isBlank()) mitglied.getKontaktinfo().setEmail(email);
+
+            System.out.print("Telefon [" + mitglied.getKontaktinfo().getTelefonnummer() + "]: ");
+            String telefon = myScanner.nextLine();
+            if (!telefon.isBlank()) mitglied.getKontaktinfo().setTelefonnummer(telefon);
+
+            System.out.print("Adresse [" + mitglied.getKontaktinfo().getAdresse() + "]: ");
+            String adresse = myScanner.nextLine();
+            if (!adresse.isBlank()) mitglied.getKontaktinfo().setAdresse(adresse);
+
+            System.out.print("Altersgruppe [" + mitglied.getAltersgruppe() + "]: ");
+            String altersgruppeInput = myScanner.nextLine().toUpperCase();
+            if (!altersgruppeInput.isBlank()) {
+                try {
+                    mitglied.setAltersgruppe(Altersgruppe.valueOf(altersgruppeInput));
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Ungültige Altersgruppe.");
+                }
+            }
+
+            boolean result = MitgliedService.bearbeitenMitglied(mitglied);
+            if (result) {
+                System.out.printf("Mitglied mit ID: %d hat neu wert.",id);
+            } else {
+                System.out.println("Mitglied konnte nicht aktualisiert werden.");
+            }
+
+        } catch (NumberFormatException error) {
+            System.out.println("Ungültige Eingabe (Zahl erwartet)." );
+        } catch (Exception error) {
+            System.out.println("beim Bearbeiten Mitglied gibt es Problem !: " + error.getMessage());
+        }
+    }
+
+     */
+
+
+    /*
+    // Bearbeitet ein bestehendes Mitglied anhand der ID
     public static void mitgliedBearbeiten(){
         System.out.print("Bitte geben Sie die ID des Mitglieds ein, das bearbeitet werden soll: ");
 
@@ -228,6 +402,8 @@ public class MitgliedView {
 
 
     }// ---mitgliedBearbeiten
+
+     */
 
 
 }

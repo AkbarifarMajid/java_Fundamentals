@@ -182,8 +182,8 @@ public class MitgliedDAO {
             }
 
 
-        }catch (SQLException erroe){
-            System.out.println("beim bearbeitem Mitglid mit ID "+ mitglied.getId() +  "gibt es Problem" + erroe.getMessage());
+        }catch (SQLException error){
+            System.out.println("beim bearbeitem Mitglid mit ID "+ mitglied.getId() +  "gibt es Problem" + error.getMessage());
             return false;
         }
 
