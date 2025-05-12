@@ -47,6 +47,6 @@ public class Motorrad extends Fahrzeug {
     public void anzeigen() {
         System.out.println("Motorrad: " + hersteller + " " + modell + " Baujahr " + baujahr + "\nHubraum: "
                 + hubraum + " ccm, Gangschaltung: " + (gangschaltung ? "Ja" : "Nein")+ "\nKilometerstand:"+ getKilometerstand()
-        + "Kraftstoff: " + getKraftstoff() + "\nParkPlatz: "+ getStandort()+ " Warungstermin: " + getWartungstermine());
+        + ", Kraftstoff: " + getKraftstoff() + "\nParkPlatz: "+ getStandort()+ ", Warungstermin: " + getWartungstermine());
     }
 }

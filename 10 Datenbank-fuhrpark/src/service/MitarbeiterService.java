@@ -47,21 +47,30 @@ public class MitarbeiterService {
 
     }
 
+    public static boolean mitarbeiter_Bearbeiten(Mitarbeiter m) {
+        return MitarbeiterDAO.mitarbeiter_Update(m);
+    }
 
+
+/*
     // Bearbeitet ein Feld eines Mitarbeiters
-    public static boolean mitarbeiter_Bearbeiten(int id,String vorname, String nachname, String position, String telefon) {
+    public static boolean mitarbeiter_Bearbeiten(int id, String vorname, String nachname, String position, String telefon) {
         Mitarbeiter m = MitarbeiterDAO.findeNachId(id);
         if (m == null) {
             return false;
         }
 
-        if (vorname != null) m.setVorname(vorname);
-        if (nachname != null) m.setNachname(nachname);
-        if (position != null) m.setPosition(position);
-        if (telefon != null) m.setTelefonnummer(telefon);
+        // Nur aktualisieren, wenn neuer Wert NICHT leer ist
+        if (vorname != null && !vorname.trim().isEmpty()) m.setVorname(vorname);
+        if (nachname != null && !nachname.trim().isEmpty()) m.setNachname(nachname);
+        if (position != null && !position.trim().isEmpty()) m.setPosition(position);
+        if (telefon != null && !telefon.trim().isEmpty()) m.setTelefonnummer(telefon);
 
         return MitarbeiterDAO.mitarbeiter_Update(m);
     }
+
+ */
+
 // End mitarbeiter_Bearbeiten
     /*
     // Bearbeitet ein Feld eines Mitarbeiters

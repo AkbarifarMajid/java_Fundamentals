@@ -34,5 +34,6 @@ public class LKW extends Fahrzeug {
                 + " Kraftstoff: " + getKraftstoff() + "\nParkPlatz: "+ getStandort()+ " Warungstermin: " + getWartungstermine()
 
         );
-    }
+    } // End anzeigen
+
 }

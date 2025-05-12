@@ -1,5 +1,7 @@
 package database;
 
+
+
 import model.*;
 
 import java.sql.*;
@@ -12,49 +14,33 @@ public class FahrzeugDAO {
     public static void einfuegen(Fahrzeug fahrzeug, String typ) {
         String sql = "INSERT INTO fahrzeug (typ_Fahrzeug, hersteller_Fahrzeug, modell_Fahrzeug, baujahr_Fahrzeug) VALUES (?, ?, ?, ?)";
 
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        int fahrzeugId = DatabaseUtils.executeInsertWithGeneratedKey(sql, typ, fahrzeug.getHersteller(), fahrzeug.getModell(), fahrzeug.getBaujahr());
 
-            statement.setString(1, typ);
-            statement.setString(2, fahrzeug.getHersteller());
-            statement.setString(3, fahrzeug.getModell());
-            statement.setInt(4, fahrzeug.getBaujahr());
+        if (fahrzeugId > 0) {
+            fahrzeug.setId(fahrzeugId);
+            System.out.println("Fahrzeug gespeichert mit (ID: " + fahrzeugId + ")");
 
-            statement.executeUpdate();
 
-            ResultSet result = statement.getGeneratedKeys();
-            if (result.next()) {
-                fahrzeug.setId(result.getInt(1));
-            }
-
-            System.out.println("Fahrzeug gespeichert mit (ID: " + fahrzeug.getId() + ")");
-
-            // spezifische Daten in die jeweilige Tabelle schreiben
+            // spezifische DAO aufrufen
             switch (typ) {
                 case "PKW" -> PkwDAO.einfuegen((PKW) fahrzeug);
                 case "LKW" -> LkwDAO.einfuegen((LKW) fahrzeug);
                 case "Motorrad" -> MotorradDAO.einfuegen((Motorrad) fahrzeug);
                 case "Fahrrad" -> FahrradDAO.einfuegen((Fahrrad) fahrzeug);
             }
-
-        } catch (SQLException e) {
-            System.out.println("beim Einfügen des Fahrzeugs gibt es Problem: " + e.getMessage());
+        } else {
+            System.out.println("beim Einfügen des Fahrzeugs gibt es Problem.");
         }
-    }
+    }    // End einfuegen
 
     // Lädt alle Fahrzeuge aus der Haupttabelle
     public static ArrayList<Fahrzeug> ladenAlle() {
         ArrayList<Fahrzeug> liste = new ArrayList<>();
         String sql = "SELECT * FROM fahrzeug";
 
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             Statement statement = connection.createStatement();
-             ResultSet result = statement.executeQuery(sql)) {
-
-            while (result.next()) {
+        try (ResultSet result = DatabaseUtils.executePreparedSelect(sql)) {
+            while (result != null && result.next()) {
                 String typ = result.getString("typ_Fahrzeug");
-                Fahrzeug fahrzeug;
-
                 String hersteller = result.getString("hersteller_Fahrzeug");
                 String modell = result.getString("modell_Fahrzeug");
                 int baujahr = result.getInt("baujahr_Fahrzeug");
@@ -62,13 +48,15 @@ public class FahrzeugDAO {
                 double kraftstoff = result.getDouble("kraftstoff_Fahrzeug");
                 String standort = result.getString("standort_Fahrzeug");
 
+                Fahrzeug fahrzeug;
+
                 switch (typ) {
-                    case "PKW" -> fahrzeug = new PKW(hersteller, modell, baujahr, 0); // Platzhalterwert
+                    case "PKW" -> fahrzeug = new PKW(hersteller, modell, baujahr, 0);
                     case "LKW" -> fahrzeug = new LKW(hersteller, modell, baujahr, 0.0);
                     case "Motorrad" -> fahrzeug = new Motorrad(hersteller, modell, baujahr, 0, false);
                     case "Fahrrad" -> fahrzeug = new Fahrrad(hersteller, modell, baujahr, false);
                     default -> {
-                        System.out.println("Falsche Type haben Sie: " + typ);
+                        System.out.println("Unbekannter Typ: " + typ);
                         continue;
                     }
                 }
@@ -80,236 +68,179 @@ public class FahrzeugDAO {
 
                 liste.add(fahrzeug);
             }
-
-        } catch (SQLException e) {
-            System.out.println("beim Laden gibt es fehler: " + e.getMessage());
+        } catch (SQLException error) {
+            System.out.println("beim Laden der Fahrzeuge gibt es Problem: " + error.getMessage());
         }
 
         return liste;
-    }
+    }// End ladenAlle
+
 
     // Fahrzeug nach ID suchen
     public static Fahrzeug findeNachId(int id) {
-        String sql_selrct = "SELECT * FROM fahrzeug WHERE id_Fahrzeug = ?";
+        String sql = "SELECT * FROM fahrzeug WHERE id_Fahrzeug = ?";
 
-        try (Connection connect_Database = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connect_Database.prepareStatement(sql_selrct)) {
+        try (ResultSet rs = DatabaseUtils.executePreparedSelect(sql, id)) {
+            if (rs == null || !rs.next()) return null;
 
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
+            String typ = rs.getString("typ_Fahrzeug");
+            String hersteller = rs.getString("hersteller_Fahrzeug");
+            String modell = rs.getString("modell_Fahrzeug");
+            int baujahr = rs.getInt("baujahr_Fahrzeug");
+            double kilometerstand = rs.getDouble("kilometer_Fahrzeug");
+            double krafstoff = rs.getDouble("kraftstoff_Fahrzeug");
+            String standort = rs.getString("standort_Fahrzeug");
+            int besitzerId = rs.getInt("besitzer_id");
+            String wartungtermin = rs.getString("wartungstermine");
 
-            if (resultSet.next()) {
-                String typ = resultSet.getString("typ_Fahrzeug");
-                String hersteller = resultSet.getString("hersteller_Fahrzeug");
-                String modell = resultSet.getString("modell_Fahrzeug");
-                int baujahr = resultSet.getInt("baujahr_Fahrzeug");
-                double kilometerstand = resultSet.getDouble("kilometer_Fahrzeug");
-                double krafstoff = resultSet.getDouble("kraftstoff_Fahrzeug");
-                String standort = resultSet.getString("standort_Fahrzeug");
-                int besitzerId = resultSet.getInt("besitzer_id");
+            Fahrzeug fahrzeug = null;
 
-                String wartungtermin = resultSet.getString("wartungstermine");
-
-               // rs.close();
-
-                Fahrzeug farzeug = null;
-                switch (typ) {
-                    case "PKW": {
-                        String sql_pkw = "SELECT * FROM pkw WHERE fahrzeug_id = ?";
-                        PreparedStatement pstmt1 = connect_Database.prepareStatement(sql_pkw);
-                        pstmt1.setInt(1, id);
-                        ResultSet result_pkw = pstmt1.executeQuery();
-                        if (result_pkw.next()) {
-                            int sitzanzahl = result_pkw.getInt("sitzanzahl");
-                            farzeug = new PKW(id, typ ,hersteller, modell, baujahr, sitzanzahl);
-                        }
-                        break;
-                    }
-                    case "LKW": {
-                        String sql_lkw = "SELECT * FROM lkw WHERE fahrzeug_id = ?";
-                        PreparedStatement pstmt1 = connect_Database.prepareStatement(sql_lkw);
-                        pstmt1.setInt(1, id);
-                        ResultSet result_lkw = pstmt1.executeQuery();
-                        if (result_lkw.next()) {
-                            int ladegewicht = result_lkw.getInt("ladegewicht");
-                            farzeug = new LKW(id, typ,hersteller, modell, baujahr, ladegewicht);
-                        }
-                        break;
-                    }
-                    case "Motorrad": {
-                        String sql_Motorad = "SELECT * FROM motorrad WHERE fahrzeug_id = ?";
-                        PreparedStatement pstmt1 = connect_Database.prepareStatement(sql_Motorad);
-                        pstmt1.setInt(1, id);
-                        ResultSet result_Motorad = pstmt1.executeQuery();
-                        if (result_Motorad.next()) {
-                            int hubraum = result_Motorad.getInt("hubraum");
-                            boolean gangschaltung = result_Motorad.getBoolean("gangschaltung");
-                            farzeug = new Motorrad(id, typ,hersteller, modell, baujahr, hubraum, gangschaltung);
-                        }
-                        break;
-                    }
-                    case "Fahrrad": {
-                        String sql_Fahrrad = "SELECT * FROM fahrrad WHERE fahrzeug_id = ?";
-                        PreparedStatement pstmt1 = connect_Database.prepareStatement(sql_Fahrrad);
-                        pstmt1.setInt(1, id);
-                        ResultSet result_Fahrrad = pstmt1.executeQuery();
-                        if (result_Fahrrad.next()) {
-                            boolean hat_korb = result_Fahrrad.getBoolean("hat_korb");
-                            farzeug = new Fahrrad(id, typ,hersteller, modell, baujahr, hat_korb);
-                        }
-                        break;
+            switch (typ) {
+                case "PKW" -> {
+                    ResultSet rsPkw = DatabaseUtils.executePreparedSelect("SELECT * FROM pkw WHERE fahrzeug_id = ?", id);
+                    if (rsPkw != null && rsPkw.next()) {
+                        int sitzanzahl = rsPkw.getInt("sitzanzahl");
+                        fahrzeug = new PKW(id, typ, hersteller, modell, baujahr, sitzanzahl);
                     }
                 }
-
-                if (farzeug != null) {
-                    farzeug.setId(resultSet.getInt("id_Fahrzeug"));
-                    farzeug.setKilometerstand(kilometerstand);
-                    farzeug.setKraftstoff(krafstoff);
-                    farzeug.setStandort(standort);
-                    Mitarbeiter besitzer = MitarbeiterDAO.findeNachId(besitzerId);
-                    farzeug.setBesitzer(besitzer);
-
-                    farzeug.setwartungstermine(wartungtermin);
-
+                case "LKW" -> {
+                    ResultSet rsLkw = DatabaseUtils.executePreparedSelect("SELECT * FROM lkw WHERE fahrzeug_id = ?", id);
+                    if (rsLkw != null && rsLkw.next()) {
+                        int ladegewicht = rsLkw.getInt("ladegewicht");
+                        fahrzeug = new LKW(id, typ, hersteller, modell, baujahr, ladegewicht);
+                    }
                 }
-
-                return farzeug;
+                case "Motorrad" -> {
+                    ResultSet rsMotorrad = DatabaseUtils.executePreparedSelect("SELECT * FROM motorrad WHERE fahrzeug_id = ?", id);
+                    if (rsMotorrad != null && rsMotorrad.next()) {
+                        int hubraum = rsMotorrad.getInt("hubraum");
+                        boolean gangschaltung = rsMotorrad.getBoolean("gangschaltung");
+                        fahrzeug = new Motorrad(id, typ, hersteller, modell, baujahr, hubraum, gangschaltung);
+                    }
+                }
+                case "Fahrrad" -> {
+                    ResultSet rsFahrrad = DatabaseUtils.executePreparedSelect("SELECT * FROM fahrrad WHERE fahrzeug_id = ?", id);
+                    if (rsFahrrad != null && rsFahrrad.next()) {
+                        boolean hatKorb = rsFahrrad.getBoolean("hat_korb");
+                        fahrzeug = new Fahrrad(id, typ, hersteller, modell, baujahr, hatKorb);
+                    }
+                }
             }
 
+            if (fahrzeug != null) {
+                fahrzeug.setId(id);
+                fahrzeug.setKilometerstand(kilometerstand);
+                fahrzeug.setKraftstoff(krafstoff);
+                fahrzeug.setStandort(standort);
+                fahrzeug.setwartungstermine(wartungtermin);
 
-        } catch (SQLException e) {
-            System.out.println("bei Suche gibt es Problem : " + e.getMessage());
+                Mitarbeiter besitzer = MitarbeiterDAO.findeNachId(besitzerId);
+                fahrzeug.setBesitzer(besitzer);
+            }
+
+            return fahrzeug;
+
+        } catch (SQLException error) {
+            System.out.println("bei Suche nach Fahrzeug gibt es Problem: " + error.getMessage());
+            return null;
         }
-
-        return null;
-    }
+    }// End findeNachId
 
     // Fahrzeug löschen
     public static boolean loeschen(int id) {
         String sql = "DELETE FROM fahrzeug WHERE id_Fahrzeug = ?";
-
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setInt(1, id);
-            int betroffen = statement.executeUpdate();
-            return betroffen > 0;
-
-        } catch (SQLException e) {
-            System.out.println("beim Löschen des Fahrzeugs gibt es Problem: " + e.getMessage());
+        try {
+            DatabaseUtils.executeUpdate(sql, id);
+            return true;
+        } catch (Exception error) {
+            System.out.println("beim Löschen des Fahrzeugs gibt es Problem: " + error.getMessage());
             return false;
         }
-    }
+    }// End loeschen
+
 
     // Aktualisiert den Besitzer eines Fahrzeugs
     public static boolean besitzerAktualisieren(int fahrzeugId, int mitarbeiterId) {
         String sql = "UPDATE fahrzeug SET besitzer_id = ? WHERE id_Fahrzeug = ?";
-
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setInt(1, mitarbeiterId);
-            statement.setInt(2, fahrzeugId);
-
-            int betroffen = statement.executeUpdate();
-            return betroffen > 0;
-
-        } catch (SQLException e) {
-            System.out.println("beim Aktualisieren des Besitzers gibt es Problem: " + e.getMessage());
+        try {
+            DatabaseUtils.executeUpdate(sql, mitarbeiterId, fahrzeugId);
+            return true;
+        } catch (Exception error) {
+            System.out.println("beim Aktualisieren des Besitzers gibt es Problem: " + error.getMessage());
             return false;
         }
-    }
+    }// End besitzerAktualisieren
+
 
     // Aktualisiert den Kilometerstand eines Fahrzeugs
     public static boolean kilometerAktualisieren(int id, double neuerKmStand) {
         String sql = "UPDATE fahrzeug SET kilometer_Fahrzeug = ? WHERE id_Fahrzeug = ?";
-
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setDouble(1, neuerKmStand);
-            statement.setInt(2, id);
-
-            int rowsUpdated = statement.executeUpdate();
-            return rowsUpdated > 0;
-
-        } catch (SQLException e) {
-            System.out.println("beim Aktualisieren des Kilometerstands gibt es problem: " + e.getMessage());
+        try {
+            DatabaseUtils.executeUpdate(sql, neuerKmStand, id);
+            return true;
+        } catch (Exception error) {
+            System.out.println("beim Aktualisieren des Kilometerstands gibt es Problem: " + error.getMessage());
             return false;
         }
-    }
+    }// End kilometerAktualisieren
+
 
     // Fügt einen Wartungstermin als String hinzu
     public static boolean wartungAktualisieren(int id, String datum) {
         String sql = "UPDATE fahrzeug SET wartungstermine = ? WHERE id_Fahrzeug = ?";
-
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setString(1, datum);
-            statement.setInt(2, id);
-
-            int rowsUpdated = statement.executeUpdate();
-            return rowsUpdated > 0;
-
-        } catch (SQLException e) {
-            System.out.println(" beim Aktualisieren des wartungstermine gibt es Problem: " + e.getMessage());
+        try {
+            DatabaseUtils.executeUpdate(sql, datum, id);
+            return true;
+        } catch (Exception error) {
+            System.out.println("beim Aktualisieren des Wartungstermins gibt es Problem: " + error.getMessage());
             return false;
         }
-    }
+    }// End wartungAktualisieren
 
-    // Fahrzeug in die Datenbank Bearbeiten
-    public static void berabeiten(Fahrzeug farzeug) {
-        String sql = "UPDATE fahrzeug set hersteller_Fahrzeug=?, modell_Fahrzeug=?, baujahr_Fahrzeug=? where id_Fahrzeug =?";
 
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
+    // Aktualisiert Basis- und Spezialdaten eines Fahrzeugs
+    public static void bearbeiten(Fahrzeug fahrzeug) {
+        String sql = "UPDATE fahrzeug SET hersteller_Fahrzeug = ?, modell_Fahrzeug = ?, baujahr_Fahrzeug = ? WHERE id_Fahrzeug = ?";
 
-            statement.setString(1, farzeug.getHersteller());
-            statement.setString(2, farzeug.getModell());
-            statement.setInt(3, farzeug.getBaujahr());
-            statement.setInt(4, farzeug.getId());
+        try {
+            DatabaseUtils.executeUpdate(
+                    sql,
+                    fahrzeug.getHersteller(),
+                    fahrzeug.getModell(),
+                    fahrzeug.getBaujahr(),
+                    fahrzeug.getId()
+            );
 
-            statement.executeUpdate();
-
-            ResultSet result_bearbeiten = statement.getGeneratedKeys();
-            if (result_bearbeiten.next()) {
-                farzeug.setId(result_bearbeiten.getInt(1));
+            // nach Typ auch spezielle Werte aktualisieren
+            if (fahrzeug instanceof PKW pkw) {
+                PkwDAO.berabeiten(pkw);
+            } else if (fahrzeug instanceof LKW lkw) {
+                LkwDAO.berabeiten(lkw);
+            } else if (fahrzeug instanceof Motorrad motorrad) {
+                MotorradDAO.berabeiten(motorrad);
+            } else if (fahrzeug instanceof Fahrrad fahrrad) {
+                FahrradDAO.berabeiten(fahrrad);
             }
 
-            System.out.println("Fahrzeug gespeichert (ID: " + farzeug.getId() + ")");
+            System.out.printf("Fahrzeug mit ID %d wurde erfolgreich aktualisiert.\n", fahrzeug.getId());
 
-            // spezifische Daten in die jeweilige Tabelle schreiben zum Update
-            switch (farzeug.getTyp_Fahrzeug()) {
-                case "PKW"->PkwDAO.berabeiten((PKW) farzeug);
-                case "LKW" -> LkwDAO.berabeiten((LKW) farzeug);
-                case "Motorrad" -> MotorradDAO.berabeiten((Motorrad) farzeug);
-                case "Fahrrad" -> FahrradDAO.berabeiten((Fahrrad) farzeug);
-            }
-
-        } catch (SQLException e) {
-            System.out.println(" beim Update des Fahrzeugs gibt es Problem: " + e.getMessage());
+        } catch (Exception error) {
+            System.out.println("beim Bearbeiten des Fahrzeugs gibt es Problem:  " + error.getMessage());
         }
-    }
+    }// End bearbeiten
+
 
     // Aktualisiert den Kraftstoffstand
     public static boolean kraftstoffAktualisieren(int id, double kraftstoff) {
         String sql = "UPDATE fahrzeug SET kraftstoff_Fahrzeug = ? WHERE id_Fahrzeug = ?";
-
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setDouble(1, kraftstoff);
-            statement.setInt(2, id);
-
-            int rowsUpdated = statement.executeUpdate();
-            return rowsUpdated > 0;
-
-        } catch (SQLException e) {
-            System.out.println("Aktualisieren des Kraftstoffs gibt es Problem: " + e.getMessage());
+        try {
+            DatabaseUtils.executeUpdate(sql, kraftstoff, id);
+            return true;
+        } catch (Exception error) {
+            System.out.println("beim Aktualisieren des Kraftstoffstands gibt es Problem: " + error.getMessage());
             return false;
         }
-    }
+    }// End kraftstoffAktualisieren
 
 
 }

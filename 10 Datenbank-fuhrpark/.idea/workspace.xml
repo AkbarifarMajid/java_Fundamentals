@@ -5,16 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba43a423-379b-47f7-8203-d5882f0c2041" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../10 Datenbank-fuhrpark.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../10 Datenbank-fuhrpark.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/10_Datenbank_fuhrpark.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/DatabaseUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/10 Datenbank-fuhrpark.iml" beforeDir="false" afterPath="$PROJECT_DIR$/10 Datenbank-fuhrpark.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/FahrradDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/FahrradDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/FahrzeugDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/FahrzeugDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/LkwDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/LkwDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/MitarbeiterDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/MitarbeiterDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/MotorradDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/MotorradDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/PkwDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/PkwDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Fahrzeug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Fahrzeug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/LKW.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/LKW.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Motorrad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Motorrad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/FahrzeugService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FahrzeugService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/MitarbeiterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/MitarbeiterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/FahrzeugView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FahrzeugView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/HauptmenueView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/HauptmenueView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MenuLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MenuLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MenuPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MenuPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MitarbeiterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MitarbeiterView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/dao/MitgliedDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/dao/MitgliedDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/view/MitgliedView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/view/MitgliedView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/view/TrainerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/view/TrainerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Uebung OOP/arrayeListTest/java_Fundamentals" beforeDir="false" afterPath="$PROJECT_DIR$/../Uebung OOP/arrayeListTest/java_Fundamentals" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -47,7 +72,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/052240/Downloads/mysql-connector-j-8.3.0.jar",
+    "last_opened_file_path": "C:/Users/052240/source/java_Fundamentals/11 Projektorientiertes Lernen",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -134,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746885954126</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary=".">
+      <option name="closed" value="true" />
+      <created>1746887035008</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746887035008</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

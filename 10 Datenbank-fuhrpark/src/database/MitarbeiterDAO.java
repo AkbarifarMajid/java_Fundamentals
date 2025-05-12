@@ -11,104 +11,82 @@ public class MitarbeiterDAO {
     // Fügt neuen Mitarbeiter ein
     public static void einfuegen(Mitarbeiter mitarbeiter) {
         String sql = "INSERT INTO mitarbeiter (vorname_Mitarbeiter, nachname_Mitarbeiter, position_Mitarbeiter, telefon_Mitarbeiter) VALUES (?, ?, ?, ?)";
-
-        try (Connection conn = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-
-            pstmt.setString(1, mitarbeiter.getVorname());
-            pstmt.setString(2, mitarbeiter.getNachname());
-            pstmt.setString(3, mitarbeiter.getPosition());
-            pstmt.setString(4, mitarbeiter.getTelefonnummer());
-
-            pstmt.executeUpdate();
-
-            ResultSet rs = pstmt.getGeneratedKeys();
-            if (rs.next()) {
-                mitarbeiter.setId(rs.getInt(1));
-            }
-
-            System.out.println("Neu Mitarbeiter mit (ID: " + mitarbeiter.getId() + ")"+ "gespeichert");
-
-        } catch (SQLException e) {
-            System.out.println("beim Einfügen des Mitarbeiters gibt es problem: " + e.getMessage());
+        try {
+            int id = DatabaseUtils.executeInsertWithGeneratedKey(
+                    sql,
+                    mitarbeiter.getVorname(),
+                    mitarbeiter.getNachname(),
+                    mitarbeiter.getPosition(),
+                    mitarbeiter.getTelefonnummer()
+            );
+            mitarbeiter.setId(id);
+            System.out.println("Neu Mitarbeiter mit (ID: " + id + ") gespeichert");
+        } catch (Exception e) {
+            System.out.println("Fehler beim Einfügen des Mitarbeiters: " + e.getMessage());
         }
-    }
+    }// End einfuegen
+
 
     // Gibt eine Liste aller Mitarbeiter zurück
     public static ArrayList<Mitarbeiter> ladenAlle() {
         ArrayList<Mitarbeiter> liste = new ArrayList<>();
-
         String sql = "SELECT * FROM mitarbeiter";
 
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             Statement statement = connection.createStatement();
-             ResultSet result = statement.executeQuery(sql)) {
-
-            while (result.next()) {
+        try (ResultSet rs = DatabaseUtils.executePreparedSelect(sql)) {
+            while (rs != null && rs.next()) {
                 Mitarbeiter m = new Mitarbeiter(
-                        result.getString("vorname_Mitarbeiter"),
-                        result.getString("nachname_Mitarbeiter"),
-                        result.getString("position_Mitarbeiter"),
-                        result.getString("telefon_Mitarbeiter")
+                        rs.getString("vorname_Mitarbeiter"),
+                        rs.getString("nachname_Mitarbeiter"),
+                        rs.getString("position_Mitarbeiter"),
+                        rs.getString("telefon_Mitarbeiter")
                 );
-                m.setId(result.getInt("id_Mitarbeiter"));
+                m.setId(rs.getInt("id_Mitarbeiter"));
                 liste.add(m);
             }
-
-        } catch (SQLException e) {
-            System.out.println(" beim Laden alle Mitarbeiten gibt es problem: " + e.getMessage());
+        } catch (SQLException error) {
+            System.out.println("beim Laden der Mitarbeiter gibt es Problem: " + error.getMessage());
         }
 
         return liste;
-    }
+    }// End ladenAlle
+
 
     // Einzelner Mitarbeiter nach ID
     public static Mitarbeiter findeNachId(int id) {
         String sql = "SELECT * FROM mitarbeiter WHERE id_Mitarbeiter = ?";
-
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setInt(1, id);
-            ResultSet result = statement.executeQuery();
-
-            if (result.next()) {
-                Mitarbeiter m = new Mitarbeiter(
-                        result.getString("vorname_Mitarbeiter"),
-                        result.getString("nachname_Mitarbeiter"),
-                        result.getString("position_Mitarbeiter"),
-                        result.getString("telefon_Mitarbeiter")
+        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql, id)) {
+            if (resultSet != null && resultSet.next()) {
+                Mitarbeiter mitarbeiter = new Mitarbeiter(
+                        resultSet.getString("vorname_Mitarbeiter"),
+                        resultSet.getString("nachname_Mitarbeiter"),
+                        resultSet.getString("position_Mitarbeiter"),
+                        resultSet.getString("telefon_Mitarbeiter")
                 );
-                m.setId(id);
-                return m;
+                mitarbeiter.setId(id);
+                return mitarbeiter;
             }
-
-        } catch (SQLException e) {
-            System.out.println("bei Mitarbeiten Suche gibt es problem: " + e.getMessage());
+        } catch (SQLException error) {
+            System.out.println("bei Mitarbeitersuche gibt es Problem: " + error.getMessage());
         }
-
         return null;
-    }
+    } // End findeNachId
+
 
     // Löscht einen Mitarbeiter aus der Datenbank
     public static boolean loeschen(int id) {
         String sql = "DELETE FROM mitarbeiter WHERE id_Mitarbeiter = ?";
-
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setInt(1, id);
-            int betroffen = statement.executeUpdate();
-            return betroffen > 0;
-
-        } catch (SQLException e) {
-            System.out.println(" beim Mitarbeiter Löschen gibt es Problem: " + e.getMessage());
+        try {
+            DatabaseUtils.executeUpdate(sql, id);
+            return true;
+        } catch (Exception error) {
+            System.out.println("beim Löschen des Mitarbeiters gibt es Problem: " + error.getMessage());
             return false;
         }
-    }
+    }// End loeschen
 
 
-    public static boolean mitarbeiter_Update(Mitarbeiter m) {
+    // mitarbeiter Bearbeiten
+    public static boolean mitarbeiter_Update(Mitarbeiter mitarbeiter) {
         String sql = """
         UPDATE mitarbeiter
         SET vorname_Mitarbeiter = ?, 
@@ -116,52 +94,18 @@ public class MitarbeiterDAO {
             position_Mitarbeiter = ?, 
             telefon_Mitarbeiter = ?
         WHERE id_Mitarbeiter = ?
-        """;
+    """;
 
-        try (Connection conn = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, m.getVorname());
-            pstmt.setString(2, m.getNachname());
-            pstmt.setString(3, m.getPosition());
-            pstmt.setString(4, m.getTelefonnummer());
-            pstmt.setInt(5, m.getId());
-
-            int rows = pstmt.executeUpdate();
-            return rows > 0;
-
-        } catch (SQLException e) {
-            System.out.println("❌ Fehler beim Aktualisieren: " + e.getMessage());
+        try {
+            DatabaseUtils.executeUpdate(sql, mitarbeiter.getVorname(), mitarbeiter.getNachname(), mitarbeiter.getPosition(), mitarbeiter.getTelefonnummer(), mitarbeiter.getId()
+            );
+            return true;
+        } catch (Exception error) {
+            System.out.println("beim Aktualisieren des Mitarbeiters gibt es Problem: " + error.getMessage());
             return false;
         }
-    }
+    }// End mitarbeiter_Update
 
 
-
-/*
-    // Aktualisiert die Mitarbeiterdaten
-    public static boolean mitarbeiter_Update(Mitarbeiter mitarbeiter){
-        String sql_Update = "UPDATE mitarbeiter SET vorname_Mitarbeiter=?,nachname_Mitarbeiter = ?, position_Mitarbeiter = ?, telefon_Mitarbeiter = ? where id_Mitarbeiter= ?";
-
-        try (Connection  connect = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statment = connect.prepareStatement(sql_Update)) {
-
-            statment.setString(1,mitarbeiter.getVorname());
-            statment.setString(2,mitarbeiter.getNachname());
-            statment.setString(3,mitarbeiter.getPosition());
-            statment.setString(4,mitarbeiter.getTelefonnummer());
-            statment.setInt(5,mitarbeiter.getId());
-
-            int rows = statment.executeUpdate();
-            return rows > 0;
-
-        }catch(SQLException error){
-            System.out.println("Bei update Mitarbeiter gibt es Problem" + error.getMessage());
-            return false;
-        }
-
-    }
-
- */
 
 }

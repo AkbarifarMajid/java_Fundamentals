@@ -36,7 +36,7 @@ public class HauptmenueView {
             }
 
         } while (!haupt_Options.equals("x"));
-    }
+    } // End starten
 
     // Hauptmenü und Submenüs anzeigen + Steuerung
     private void zeigeSubMenu(String dateiName, String titel) {
@@ -80,6 +80,6 @@ public class HauptmenueView {
         } while (!manu_Wealen.equals("z"));
 
 
-    }
+    } // End zeigeSubMenu
 
 }

@@ -12,48 +12,35 @@ public class LkwDAO {
     // Fügt ein LKW-Objekt (fahrzeug_id, ladegewicht) in die Datenbank ein
     public static void einfuegen(LKW lkw) {
         String sql = "INSERT INTO lkw (fahrzeug_id, ladegewicht) VALUES (?, ?)";
-
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setInt(1, lkw.getId());
-            statement.setDouble(2, lkw.getLadegewicht());
-
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("beim Einfügen in LKW-Tabelle gibt es Problem: " + e.getMessage());
+        try {
+            DatabaseUtils.executeUpdate(sql, lkw.getId(), lkw.getLadegewicht());
+        } catch (Exception error) {
+            System.out.println("beim Einfügen in die Tabelle LKW gibt es Problem: " + error.getMessage());
         }
-    }
+    } // End einfuegen
+
 
     // Holt das Ladegewicht eines LKWs anhand der Fahrzeug-ID
     public static double getLadegewicht(int fahrzeugId) {
         String sql = "SELECT ladegewicht FROM lkw WHERE fahrzeug_id = ?";
-
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, fahrzeugId);
-            ResultSet result = statement.executeQuery();
-
-            if (result.next()) return result.getDouble("ladegewicht");
-        } catch (SQLException e) {
-            System.out.println(" beim Laden von Ladegewicht gibt es Problem: " + e.getMessage());
+        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql, fahrzeugId)) {
+            if (resultSet != null && resultSet.next()) {
+                return resultSet.getDouble("ladegewicht");
+            }
+        } catch (SQLException error) {
+            System.out.println("beim Laden von Ladegewicht gibt es Problem: " + error.getMessage());
         }
         return -1;
-    }
+    } // End getLadegewicht
 
     // Aktualisiert das Ladegewicht eines LKWs in der Datenbank
     public static void berabeiten(LKW lkw) {
-        String sql = "update lkw set ladegewicht = ? where fahrzeug_id=?";
-
-        try (Connection connection = DatabaseManager.getMyFuhrpark_DB_Connection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setDouble(1, lkw.getLadegewicht());
-            statement.setInt(2, lkw.getId());
-
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("beim Update in LKW-Tabelle Gibt es Problem: " + e.getMessage());
+        String sql = "UPDATE lkw SET ladegewicht = ? WHERE fahrzeug_id = ?";
+        try {
+            DatabaseUtils.executeUpdate(sql, lkw.getLadegewicht(), lkw.getId());
+        } catch (Exception error) {
+            System.out.println("beim Aktualisieren der Tabelle LKW gibt es Problem: " + error.getMessage());
         }
-    }
+    }// End berabeiten
+
 }

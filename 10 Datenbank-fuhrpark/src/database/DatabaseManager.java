@@ -15,7 +15,7 @@ public final class DatabaseManager {
     // Privater Konstruktor verhindert das entstehen lassen von Objekten dieser Klasse
     private DatabaseManager() {
 
-    }
+    }// End DatabaseManager
 
     // Methode zum Abrufen einer aktiven Verbindung
     public static Connection getMyFuhrpark_DB_Connection() throws SQLException {
@@ -40,11 +40,12 @@ public final class DatabaseManager {
                 // Stellt die Verbindung zur Datenbank her
                 myFuhrpark_DB_Connection = DriverManager.getConnection(url, user, password);
 
-            } catch (Exception e) {
-                throw new SQLException("bei der Datenbankverbindung gibt es Problem: " + e.getMessage());
+            } catch (Exception error) {
+                throw new SQLException("bei der Datenbankverbindung gibt es Problem: " + error.getMessage());
             }
         }
         // Gibt die aktive Verbindung zurück
         return myFuhrpark_DB_Connection;
-    }
+    }// End getMyFuhrpark_DB_Connection
+
 }

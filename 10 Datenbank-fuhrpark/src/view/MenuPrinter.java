@@ -16,5 +16,5 @@ public class MenuPrinter {
             System.out.printf("%2s - %s%n", key, text);
 
         }
-    }
+    }// End printMenu
 }

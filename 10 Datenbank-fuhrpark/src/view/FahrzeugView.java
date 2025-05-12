@@ -111,6 +111,7 @@ public class FahrzeugView {
         }
     }
 
+
     public static void fahrzeugZuweisen() {
         System.out.println("\n--- Fahrzeug einem Mitarbeiter zuweisen ---");
 
@@ -123,7 +124,7 @@ public class FahrzeugView {
         boolean erfolg_result = FahrzeugService.fahrzeugZuweisen(fahrzeugId, mitarbeiterId);
 
         if (erfolg_result) {
-            System.out.println("Fahrzeug wurde erfolgreich zugewiesen ID:" + mitarbeiterId);
+            System.out.printf("Fahrzeug mit ID %d zugewiesen  Von Mitarbeiter mid ID %d:" ,fahrzeugId, mitarbeiterId);
         } else {
             System.out.println("ID falsch oder DB-Fehler.");
         }
@@ -172,36 +173,64 @@ public class FahrzeugView {
 
     }
 
-    //Fahrzeug update
+
+    //Fahrzeug information Bearbeiten
     public static void fahrzeugBearbeiten() {
         System.out.println("\n--- Fahrzeug Bearbeiten ---");
 
         System.out.print("Fahrzeug-ID: ");
         int id_Fahrzeug = Integer.parseInt(myScanner.nextLine());
 
-       Fahrzeug farzeuchuchen = FahrzeugService.fahrzeugSuchen(id_Fahrzeug);
+        Fahrzeug alt_Fahrzeug = FahrzeugService.fahrzeugSuchen(id_Fahrzeug);
+        if (alt_Fahrzeug == null) {
+            System.out.printf("Keines Fazhrzeug mit ID %d verfügbar ist !", id_Fahrzeug);
+            return;
+        }
 
-       if(farzeuchuchen == null){
-           System.out.println("nicht gefunden");
-           return;
-       }
+        alt_Fahrzeug.anzeigen();
+        System.out.println("\nDrücken Sie Enter, um den alten Wert zu behalten.");
 
-       farzeuchuchen.anzeigen();
-
-        System.out.println("\n--- Neues Fahrzeug Bearbeiten ---");
-
-        System.out.print("Hersteller: ");
+        System.out.print("Hersteller [" + alt_Fahrzeug.getHersteller() + "]: ");
         String hersteller = myScanner.nextLine();
+        if (!hersteller.isBlank()) alt_Fahrzeug.setHersteller(hersteller);
 
-        System.out.print("Modell: ");
+        System.out.print("Modell [" + alt_Fahrzeug.getModell() + "]: ");
         String modell = myScanner.nextLine();
+        if (!modell.isBlank()) alt_Fahrzeug.setModell(modell);
 
-        System.out.print("Baujahr: ");
-        int baujahr = Integer.parseInt(myScanner.nextLine());
+        System.out.print("Baujahr [" + alt_Fahrzeug.getBaujahr() + "]: ");
+        String baujahrStr = myScanner.nextLine();
+        if (!baujahrStr.isBlank()) alt_Fahrzeug.setBaujahr(Integer.parseInt(baujahrStr));
 
-       FahrzeugService.fahrzeugBearbeiten(id_Fahrzeug,farzeuchuchen.getTyp_Fahrzeug(), hersteller, modell, baujahr);
+        // Typ-spezifische Felder aktualisieren:
+        if (alt_Fahrzeug instanceof PKW pkw) {
+            System.out.print("Sitzanzahl [" + pkw.getSitzanzahl() + "]: ");
+            String neu_Sitzanzahl = myScanner.nextLine();
+            if (!neu_Sitzanzahl.isBlank()) pkw.setSitzanzahl(Integer.parseInt(neu_Sitzanzahl));
 
-    }
+        } else if (alt_Fahrzeug instanceof LKW lkw) {
+            System.out.print("Ladegewicht [" + lkw.getLadegewicht() + "]: ");
+            String neu_Ladegewicht = myScanner.nextLine();
+            if (!neu_Ladegewicht.isBlank()) lkw.setLadegewicht(Double.parseDouble(neu_Ladegewicht));
+
+        } else if (alt_Fahrzeug instanceof Motorrad motorrad) {
+            System.out.print("Hubraum [" + motorrad.getHubraum() + "]: ");
+            String neu_Hubraum = myScanner.nextLine();
+            if (!neu_Hubraum.isBlank()) motorrad.setHubraum(Integer.parseInt(neu_Hubraum));
+
+            System.out.print("Gangschaltung [" + (motorrad.isGangschaltung() ? "ja" : "nein") + "]: ");
+            String neu_Gangschaltung = myScanner.nextLine();
+            if (!neu_Gangschaltung.isBlank()) motorrad.setGangschaltung(neu_Gangschaltung.equalsIgnoreCase("ja"));
+
+        } else if (alt_Fahrzeug instanceof Fahrrad fahrrad) {
+            System.out.print("Hat Korb [" + (fahrrad.isHatKorb() ? "ja" : "nein") + "]: ");
+            String neu_Korb = myScanner.nextLine();
+            if (!neu_Korb.isBlank()) fahrrad.setHatKorb(neu_Korb.equalsIgnoreCase("ja"));
+        }
+
+        FahrzeugService.fahrzeugBearbeiten(alt_Fahrzeug);
+    } // End fahrzeugBearbeiten
+
 
     //Tanken
     public static void fahrzeugTanken() {
@@ -220,7 +249,7 @@ public class FahrzeugView {
         } else {
             System.out.println("Fahrzeug konnte nicht tanken.");
         }
-    }
+    } // End fahrzeugTanken
 
 
 }

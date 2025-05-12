@@ -91,6 +91,21 @@ public abstract class Fahrzeug {
     public void setKraftstoff(double kraftstoff) {this.kraftstoff = kraftstoff;}
     public static Fahrzeug fahrzeugSuchen(int farzeugId){return FahrzeugDAO.findeNachId(farzeugId);}
 
+    public void setHersteller(String hersteller) {
+        this.hersteller = hersteller;
+    }
+
+    public void setModell(String modell) {
+        this.modell = modell;
+    }
+
+    public void setBaujahr(int baujahr) {
+        this.baujahr = baujahr;
+    }
+
+    public void setWartungstermine(String wartungstermine) {
+        this.wartungstermine = wartungstermine;
+    }
 
     // Abstrakte Methode zur Ausgabe der Fahrzeuginformationen
     public abstract void anzeigen();

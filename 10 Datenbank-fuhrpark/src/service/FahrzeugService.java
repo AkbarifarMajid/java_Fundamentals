@@ -179,6 +179,31 @@ public class FahrzeugService {
 
     }
 
+    public static void fahrzeugBearbeiten(Fahrzeug f) {
+        FahrzeugDAO.bearbeiten(f);  // nur weiterleiten an DAO
+    }
+
+/*
+    public static void fahrzeugBearbeiten(int id, String hersteller, String modell, int baujahr) {
+        Fahrzeug f = FahrzeugDAO.findeNachId(id);
+        if (f == null) {
+            System.out.println("❌ Fahrzeug nicht gefunden.");
+            return;
+        }
+
+        if (hersteller != null) f.setHersteller(hersteller);
+        if (modell != null) f.setModell(modell);
+        if (baujahr != -1) f.setBaujahr(baujahr);
+
+        if (FahrzeugDAO.bearbeiten(f)) {
+            System.out.println("✅ Fahrzeug erfolgreich bearbeitet.");
+        } else {
+            System.out.println("❌ Beim Bearbeiten gab es ein Problem.");
+        }
+    }
+*/
+
+    /*
     // Bearbeiten der Fahrzeugdaten
     public static void fahrzeugBearbeiten(int id,String typ, String hersteller, String modell, int baujahr) {
 
@@ -220,5 +245,7 @@ public class FahrzeugService {
 
         }
     }
+
+     */
 
 }

@@ -29,8 +29,7 @@ public class MitarbeiterView {
 
         MitarbeiterService.mitarbeiterHinzufuegen(vorname, nachname, position, telefon);
 
-
-    }
+    } // End mitarbeiterHinzufuegen
 
     //Mitarbeiter nach ID suchen
     public static void mitarbeiterSuchen() {
@@ -46,7 +45,7 @@ public class MitarbeiterView {
         } else {
             System.out.println("Mit ID: "+ id_Mitarbeiter +" gibt es Kein Mitarbeiter ");
         }
-    }
+    }// End mitarbeiterSuchen
 
     //Zeigt alle Mitarbeiter
     public static void mitarbeiterAnzeigen(ArrayList<Mitarbeiter> liste) {
@@ -63,7 +62,7 @@ public class MitarbeiterView {
                 System.out.println("--------------------");
             }
         }
-    }
+    }// End mitarbeiterAnzeigen
 
     //Löschen
     public static void mitarbeiterLoeschen() {
@@ -89,113 +88,51 @@ public class MitarbeiterView {
         } else {
             System.out.println("konnte nicht gelöscht werden.");
         }
-    }
+    } // End mitarbeiterLoeschen
 
-    // Bearbeiten
-    public static void mitarbeiterBearbeiten(){
+
+    public static void mitarbeiterBearbeiten() {
         System.out.println("\n--- Mitarbeiter Bearbeiten ---");
 
-        System.out.println(" Geben Sie den Mitarbeiter ID ein. ");
+        System.out.print("Mitarbeiter-ID: ");
         int id_Mitarbeiter = Integer.parseInt(myScanner.nextLine());
 
-        Mitarbeiter mitarbeiter_Suchen = MitarbeiterService.mitarbeiterSuchen(id_Mitarbeiter);
+        Mitarbeiter alt_info = MitarbeiterService.mitarbeiterSuchen(id_Mitarbeiter);
 
-
-        if (mitarbeiter_Suchen != null) {
-            //System.out.println("\nGefundener Mitarbeiter:");
-            //System.out.println(mitarbeiter_Suchen.getId() + ": " + mitarbeiter_Suchen.getVorname() + " " + mitarbeiter_Suchen.getNachname() + ", " + mitarbeiter_Suchen.getPosition());
-       // } else {
-            System.out.println("Mit ID: "+ id_Mitarbeiter +" gibt es Kein Mitarbeiter ");
+        if (alt_info == null) {
+            System.out.println("Mitarbeiter mit ID: " + id_Mitarbeiter + "verfügbar ist.");
             return;
         }
-
 
         System.out.println("\nGefundener Mitarbeiter:");
-        System.out.println(mitarbeiter_Suchen.getId() + ": " + mitarbeiter_Suchen.getVorname() + " " + mitarbeiter_Suchen.getNachname() + ", " + mitarbeiter_Suchen.getPosition());
+        System.out.println(alt_info.getId() + ": " + alt_info.getVorname() + " " + alt_info.getNachname() + ", " + alt_info.getPosition());
 
-        System.out.println("\nDrücken Sie Enter, um das aktuelle Feld zu behalten.");
+        System.out.println("\nDrücken Sie Enter, um den alten Wert zu behalten.");
 
-        System.out.print("Neuer Vorname: ");
-        String neuerVorname = myScanner.nextLine();
+        System.out.print("Vorname [" + alt_info.getVorname() + "]: ");
+        String vornameInput = myScanner.nextLine();
+        if(!vornameInput.isBlank()) alt_info.setVorname(vornameInput);
 
-        System.out.print("Neuer Nachname: ");
-        String neuerNachname = myScanner.nextLine();
+        System.out.print("Nachname [" + alt_info.getNachname() + "]: ");
+        String nachnameInput = myScanner.nextLine();
+        if(!nachnameInput.isBlank()) alt_info.setNachname(nachnameInput);
 
-        System.out.print("Neue Position: ");
-        String neuePosition = myScanner.nextLine();
+        System.out.print("Position [" + alt_info.getPosition() + "]: ");
+        String positionInput = myScanner.nextLine();
+        if(!positionInput.isBlank()) alt_info.setPosition(positionInput);
 
-        System.out.print("Neue Telefonnummer: ");
-        String neueTelefonnummer = myScanner.nextLine();
+        System.out.print("Telefonnummer [" + alt_info.getTelefonnummer() + "]: ");
+        String telefonInput = myScanner.nextLine();
+        if(!telefonInput.isBlank()) alt_info.setTelefonnummer(telefonInput);
 
-        boolean berabeiten_Result = MitarbeiterService.mitarbeiter_Bearbeiten(
-                id_Mitarbeiter,
-                neuerVorname.isBlank() ? null : neuerVorname,
-                neuerNachname.isBlank() ? null : neuerNachname,
-                neuePosition.isBlank() ? null : neuePosition,
-                neueTelefonnummer.isBlank() ? null : neueTelefonnummer);
-        //System.out.println("Was möchten Sie ändern?");
-        //System.out.println("1 - Vorname");
-        //System.out.println("2 - Nachname");
-        //System.out.println("3 - Position");
-        //System.out.println("4 - Telefonnummer");
-        //System.out.print("Auswahl: ");
-        //String bearbeiten_Auswahl = myScanner.nextLine();
 
-       // System.out.println(" Neuer Wert für Ihre Auswahl : ");
-        //String neu_Wert_Bearbeiten = myScanner.nextLine();
-
-       // boolean berabeiten_Result = MitarbeiterService.mitarbeiter_Bearbeiten(id_Mitarbeiter,bearbeiten_Auswahl,neu_Wert_Bearbeiten);
-
-        if(berabeiten_Result){
+        boolean erfolg = MitarbeiterService.mitarbeiter_Bearbeiten(alt_info);
+        if (erfolg) {
             System.out.println("Mitarbeiter mit ID: "+ id_Mitarbeiter + "ist hat neu Wert.");
-        }else{
-            System.out.println(" Bei Bearbeiten gibt es Problem !");
-        }
-
-    }
-
-
-    /*
-    // Bearbeiten
-    public static void mitarbeiterBearbeiten(){
-        System.out.println("\n--- Mitarbeiter Bearbeiten ---");
-
-        System.out.println(" Geben Sie den Mitarbeiter ID ein. ");
-        int id_Mitarbeiter = Integer.parseInt(myScanner.nextLine());
-
-        Mitarbeiter mitarbeiter_Suchen = MitarbeiterService.mitarbeiterSuchen(id_Mitarbeiter);
-
-
-        if (mitarbeiter_Suchen != null) {
-            System.out.println("\nGefundener Mitarbeiter:");
-            System.out.println(mitarbeiter_Suchen.getId() + ": " + mitarbeiter_Suchen.getVorname() + " " + mitarbeiter_Suchen.getNachname() + ", " + mitarbeiter_Suchen.getPosition());
         } else {
-            System.out.println("Mit ID: "+ id_Mitarbeiter +" gibt es Kein Mitarbeiter ");
-            return;
+            System.out.println("Bei Bearbeiten gibt es Problem .");
         }
+    } // End mitarbeiterBearbeiten
 
-
-        System.out.println("Was möchten Sie ändern?");
-        System.out.println("1 - Vorname");
-        System.out.println("2 - Nachname");
-        System.out.println("3 - Position");
-        System.out.println("4 - Telefonnummer");
-        System.out.print("Auswahl: ");
-        String bearbeiten_Auswahl = myScanner.nextLine();
-
-        System.out.println(" Neuer Wert für Ihre Auswahl : ");
-        String neu_Wert_Bearbeiten = myScanner.nextLine();
-
-        boolean berabeiten_Result = MitarbeiterService.mitarbeiter_Bearbeiten(id_Mitarbeiter,bearbeiten_Auswahl,neu_Wert_Bearbeiten);
-
-        if(berabeiten_Result){
-            System.out.println("Mitarbeiter mit ID: "+ id_Mitarbeiter + "ist hat neu Wert.");
-        }else{
-            System.out.println(" Bei Bearbeiten gibt es Problem !");
-        }
-
-    }
-
-     */
 
 }
