@@ -18,7 +18,7 @@ public final class DatabaseManager {
     }// End DatabaseManager
 
     // Methode zum Abrufen einer aktiven Verbindung
-    public static Connection getMyFuhrpark_DB_Connection() throws SQLException {
+    public static Connection myFuhrpark_DB_Connection() throws SQLException {
         if (myFuhrpark_DB_Connection == null || myFuhrpark_DB_Connection.isClosed()) {
             try {
                 // Lädt die Datenbankkonfiguration aus der Datei db.properties
@@ -46,6 +46,7 @@ public final class DatabaseManager {
         }
         // Gibt die aktive Verbindung zurück
         return myFuhrpark_DB_Connection;
+
     }// End getMyFuhrpark_DB_Connection
 
 }

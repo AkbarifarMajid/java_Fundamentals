@@ -6,7 +6,7 @@ public class DatabaseUtils {
 
     // Führt INSERT-, UPDATE- oder DELETE-Befehle ohne Rückgabewert aus
     public static void executeUpdate(String sql, Object... params) {
-        try (Connection connect_Update = DatabaseManager.getMyFuhrpark_DB_Connection();
+        try (Connection connect_Update = DatabaseManager.myFuhrpark_DB_Connection();
              PreparedStatement statement_Update = connect_Update.prepareStatement(sql)) {
 
             for (int i = 0; i < params.length; i++) {
@@ -23,7 +23,7 @@ public class DatabaseUtils {
     // Führt einen einfachen SELECT-Befehl ohne Parameter aus und gibt ein ResultSet zurück
     public static ResultSet executeSimpleSelect(String sql) {
         try {
-            Connection connectSimple_Select = DatabaseManager.getMyFuhrpark_DB_Connection();
+            Connection connectSimple_Select = DatabaseManager.myFuhrpark_DB_Connection();
             Statement stmtSimple_Select = connectSimple_Select.createStatement();
             return stmtSimple_Select.executeQuery(sql);
 
@@ -36,7 +36,7 @@ public class DatabaseUtils {
     // Führt einen SELECT mit PreparedStatement und Parametern aus und gibt ein ResultSet zurück
     public static ResultSet executePreparedSelect(String sql, Object... params) {
         try {
-            Connection connParameterSelect = DatabaseManager.getMyFuhrpark_DB_Connection();
+            Connection connParameterSelect = DatabaseManager.myFuhrpark_DB_Connection();
             PreparedStatement stmtParameterSelect = connParameterSelect.prepareStatement(sql);
 
             for (int i = 0; i < params.length; i++) {
@@ -53,7 +53,7 @@ public class DatabaseUtils {
 
     // Führt einen INSERT aus und gibt den automatisch generierten Primärschlüssel zurück
     public static int executeInsertWithGeneratedKey(String sql, Object... params) {
-        try (Connection connInsert_Key = DatabaseManager.getMyFuhrpark_DB_Connection();
+        try (Connection connInsert_Key = DatabaseManager.myFuhrpark_DB_Connection();
              PreparedStatement stmtInsert_Key = connInsert_Key.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             for (int i = 0; i < params.length; i++) {

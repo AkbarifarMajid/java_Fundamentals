@@ -4,29 +4,61 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba43a423-379b-47f7-8203-d5882f0c2041" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/database/DatabaseUtils.java" afterDir="false" />
+    <list default="true" id="ba43a423-379b-47f7-8203-d5882f0c2041" name="Changes" comment="Add DAtabaseUtil.java  und ermöglicht die Wiederverwendung von SQL-Ausführungen (INSERT, SELECT, UPDATE) mit weniger Code und höherer Übersichtlichkeit.">
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/.idea/12 Grafisch Oberflächen.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/.idea/libraries/LGoodDatePicker_11_2_1_executable_demo.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/.idea/libraries/mysql_connector_j_9_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/Fuhrpark_GUI.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/dao/BenutzerDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/dao/DatabaseUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/dao/FahrradDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/dao/FahrzeugDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/dao/KilometerDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/dao/LkwDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/dao/MitarbeiterDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/dao/MotorradDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/dao/PkwDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/dao/TankenDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/dao/ZuweisungDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/database/DatabaseManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/Main_Form.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/auth/Login_Form.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/auth/Register_Form.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/dashboard/DashboardPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/fahrzeug/Bearbeiten_Fahrzeug_Dialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/fahrzeug/Fahrzeuge_Haupt_Panel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/fahrzeug/Hinzu_Fahrzeug_Dialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/mitarbeiter/Bearbeiten_Mitarbeiter_Dialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/mitarbeiter/Hinzu_Mitarbeiter_Dialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/mitarbeiter/Mitarbeiter_Haupt_Panel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/zuweisung/Zuweisung_Haupt_Panel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/zuweisung/Zuweisung_Mitarbeiter_Panel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/zuweisung/dialog/FahrzeugAuswahlDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/gui/zuweisung/dialog/MitarbeiterAuswahlDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/model/Fahrrad.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/model/Fahrzeug.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/model/LKW.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/model/Mitarbeiter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/model/Motorrad.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/model/PKW.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/service/FahrzeugService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/service/KilometerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/service/MitarbeiterService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/service/ZuweisungService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/util/IconLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../12 Grafisch Oberflächen/Fuhrpark_GUI/src/util/TableStyler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 Datenbank-fuhrpark.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../10 Datenbank-fuhrpark.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/DatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/FahrradDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/FahrradDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/FahrzeugDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/FahrzeugDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/LkwDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/LkwDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/MitarbeiterDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/MitarbeiterDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/MotorradDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/MotorradDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/PkwDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/PkwDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Fahrzeug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Fahrzeug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/LKW.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/LKW.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Motorrad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Motorrad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/FahrzeugService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FahrzeugService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/MitarbeiterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/MitarbeiterService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/FahrzeugView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FahrzeugView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/HauptmenueView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/HauptmenueView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MenuLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MenuLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MenuPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MenuPrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MitarbeiterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MitarbeiterView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/dao/MitgliedDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/dao/MitgliedDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/view/MitgliedView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/view/MitgliedView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/view/TrainerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11 Projektorientiertes Lernen/src/view/TrainerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/DatabaseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/DatabaseUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Uebung OOP/arrayeListTest/java_Fundamentals" beforeDir="false" afterPath="$PROJECT_DIR$/../Uebung OOP/arrayeListTest/java_Fundamentals" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +92,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2wuH7mo2FzNmgf92YEszcuCx0ww" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -72,7 +107,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/052240/source/java_Fundamentals/11 Projektorientiertes Lernen",
+    "last_opened_file_path": "C:/Users/052240/source/java_Fundamentals/12 Grafisch Oberflächen/Fuhrpark_GUI",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -167,11 +202,28 @@
       <option name="project" value="LOCAL" />
       <updated>1746887035008</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add DAtabaseUtil.java  und ermöglicht die Wiederverwendung von SQL-Ausführungen (INSERT, SELECT, UPDATE) mit weniger Code und höherer Übersichtlichkeit.">
+      <option name="closed" value="true" />
+      <created>1747040870778</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1747040870778</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add DAtabaseUtil.java  und ermöglicht die Wiederverwendung von SQL-Ausführungen (INSERT, SELECT, UPDATE) mit weniger Code und höherer Übersichtlichkeit.">
+      <option name="closed" value="true" />
+      <created>1747040919862</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747040919862</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="Add DAtabaseUtil.java  und ermöglicht die Wiederverwendung von SQL-Ausführungen (INSERT, SELECT, UPDATE) mit weniger Code und höherer Übersichtlichkeit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add DAtabaseUtil.java  und ermöglicht die Wiederverwendung von SQL-Ausführungen (INSERT, SELECT, UPDATE) mit weniger Code und höherer Übersichtlichkeit." />
   </component>
 </project>
