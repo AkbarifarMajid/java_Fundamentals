@@ -13,7 +13,7 @@ public class MitarbeiterDAO {
     // Fügt neuen Mitarbeiter ein
     public static boolean mitarbeiter_einfuegen(Mitarbeiter mitarbeiter) {
         String sql_einfugen = "INSERT INTO mitarbeiter (vorname, nachname, abteilung, telefon, email, einstellungsdatum) VALUES (?, ?, ?, ?, ?, ?)";
-        return DatabaseUtils.executeUpdate(sql_einfugen,
+        return DatabaseUtils.update_Mit_Parametern(sql_einfugen,
                 mitarbeiter.getVorname(),
                 mitarbeiter.getNachname(),
                 mitarbeiter.getAbteilung(),
@@ -27,7 +27,7 @@ public class MitarbeiterDAO {
         ArrayList<Mitarbeiter> list = new ArrayList<>();
         String sql_load_All = "SELECT * FROM mitarbeiter";
 
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_load_All)) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_load_All)) {
             while (resultSet != null && resultSet.next()) {
                 Mitarbeiter mitarbeiter = new Mitarbeiter(
                         resultSet.getInt("id"),
@@ -49,7 +49,7 @@ public class MitarbeiterDAO {
     // Findet Mitarbeiter anhand ID
     public static Mitarbeiter find_Mitarbeiter_Id(int id) {
         String sql_Find_Id = "SELECT * FROM mitarbeiter WHERE id = ?";
-        try (ResultSet reault_Find_Mitarbeiter = DatabaseUtils.executePreparedSelect(sql_Find_Id, id)) {
+        try (ResultSet reault_Find_Mitarbeiter = DatabaseUtils.suche_Mit_Parametern(sql_Find_Id, id)) {
             if (reault_Find_Mitarbeiter != null && reault_Find_Mitarbeiter.next()) {
                 return new Mitarbeiter(
                         reault_Find_Mitarbeiter.getInt("id"),
@@ -70,7 +70,7 @@ public class MitarbeiterDAO {
     // Prüft, ob ein Mitarbeiter mit gleicher Email existiert
     public static boolean anzahl_Email(String email) {
         String sql_Email = "SELECT COUNT(*) AS anzahl FROM mitarbeiter WHERE email = ?";
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_Email, email)) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_Email, email)) {
             return resultSet != null && resultSet.next() && resultSet.getInt("anzahl") > 0;
         } catch (Exception error) {
             System.out.println(" bei der Email-Prüfung gibt es Problem: " + error.getMessage());
@@ -81,14 +81,14 @@ public class MitarbeiterDAO {
     // Löscht Mitarbeiter
     public static boolean loeschen_Mitarbeiter(int id) {
         String sql_Loschen = "DELETE FROM mitarbeiter WHERE id = ?";
-        return DatabaseUtils.executeUpdate(sql_Loschen, id);
+        return DatabaseUtils.update_Mit_Parametern(sql_Loschen, id);
     }// End loeschen_Mitarbeiter
 
     // Bearbeitet Mitarbeiterdaten
     public static boolean bearbeiten_Mitarbeiter(Mitarbeiter mitarbeiter) {
         String sql_Bearbeiten = "UPDATE mitarbeiter SET vorname = ?, nachname = ?, abteilung = ?, telefon = ?, email = ?, einstellungsdatum = ? WHERE id = ?";
 
-        return DatabaseUtils.executeUpdate(sql_Bearbeiten,
+        return DatabaseUtils.update_Mit_Parametern(sql_Bearbeiten,
                 mitarbeiter.getVorname(),
                 mitarbeiter.getNachname(),
                 mitarbeiter.getAbteilung(),
@@ -104,7 +104,7 @@ public class MitarbeiterDAO {
         String sql_Vorname = "SELECT * FROM mitarbeiter WHERE vorname LIKE ?";
         ArrayList<Mitarbeiter> liste = new ArrayList<>();
 
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_Vorname, "%" + vorname + "%")) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_Vorname, "%" + vorname + "%")) {
             while (resultSet != null && resultSet.next()) {
                 liste.add(new Mitarbeiter(
                         resultSet.getInt("id"),
@@ -129,7 +129,7 @@ public class MitarbeiterDAO {
         String sql_find_Nachname = "SELECT * FROM mitarbeiter WHERE nachname LIKE ?";
         ArrayList<Mitarbeiter> liste = new ArrayList<>();
 
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_find_Nachname, "%" + nachname + "%")) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_find_Nachname, "%" + nachname + "%")) {
             while (resultSet != null && resultSet.next()) {
                 liste.add(new Mitarbeiter(
                         resultSet.getInt("id"),
@@ -150,7 +150,7 @@ public class MitarbeiterDAO {
 
     public static int anzahl_Mitarbeiter() {
         String sql_Anzahl = "SELECT COUNT(*) AS anzahl FROM mitarbeiter";
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_Anzahl)) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_Anzahl)) {
             if (resultSet != null && resultSet.next()) {
                 return resultSet.getInt("anzahl");
             }

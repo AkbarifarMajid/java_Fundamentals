@@ -20,7 +20,7 @@ public class ZuweisungService {
         return ZuweisungDAO.anzahl_Zuweizung();
     }
 
-    public static boolean istFahrzeugVerfuegbar(int fahrzeugId, LocalDate von, LocalDate bis) {
+    public static boolean verfugbar_Contorl(int fahrzeugId, LocalDate von, LocalDate bis) {
         return ZuweisungDAO.fahrzeug_Frei(fahrzeugId, von, bis);
     }
 

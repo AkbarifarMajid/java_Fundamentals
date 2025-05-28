@@ -15,6 +15,7 @@ public class DashboardPanel extends JPanel {
 
     private Main_Form mainForm;
 
+    // geht ein object von Main_Form , damm kann von Metod zeigePanel() benutzen
     public DashboardPanel(Main_Form mainForm) {
         this.mainForm = mainForm;
 

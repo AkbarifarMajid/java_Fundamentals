@@ -1,12 +1,12 @@
 package gui.zuweisung;
 
-import gui.zuweisung.dialog.FahrzeugAuswahlDialog;
-import gui.zuweisung.dialog.MitarbeiterAuswahlDialog;
+import gui.zuweisung.dialog.Fahrzeug_Auswahl_Dialog;
+import gui.zuweisung.dialog.Mitarbeiter_Auswahl_Dialog;
 
 import model.*;
 import service.*;
 import util.*;
-import dao.*;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -49,61 +49,61 @@ public class Zuweisung_Mitarbeiter_Panel extends JPanel {
             jLabel.setForeground(textFarbe);
         }
 
-        JTextField tfFahrzeugId = new JTextField(20);
-        JTextField tfMitarbeiterId = new JTextField(20);
-        DatePicker dpVon = new DatePicker();
-        DatePicker dpBis = new DatePicker();
-        JTextArea taBemerkung = new JTextArea(3, 20);
-        JScrollPane scrollBemerkung = new JScrollPane(taBemerkung);
+        JTextField field_FahrzeugId = new JTextField(20);
+        JTextField field_MitarbeiterId = new JTextField(20);
+        DatePicker date_Picker_Von = new DatePicker();
+        DatePicker date_Picker_Bis = new DatePicker();
+        JTextArea text_Bemerkung = new JTextArea(3, 20);
+        JScrollPane scroll_Text_Bemerkung = new JScrollPane(text_Bemerkung);
 
         // Auswahl-Buttons
 
-        JButton btnFahrzeugWaehlen = new JButton();
-        IconLoader.styl_UnicCode_Buttons(btnFahrzeugWaehlen, "\uD83D\uDD0D");
-        btnFahrzeugWaehlen.setToolTipText("Fahrzeug auswählen");
+        JButton button_Fahrzeug_Waehlen = new JButton();
+        IconLoader.styl_UnicCode_Buttons(button_Fahrzeug_Waehlen, "\uD83D\uDD0D");
+        button_Fahrzeug_Waehlen.setToolTipText("Fahrzeug auswählen");
 
-        btnFahrzeugWaehlen.addActionListener(e -> {
-            Integer id = FahrzeugAuswahlDialog.zeigeDialog(this);
-            if (id != null) tfFahrzeugId.setText(String.valueOf(id));
+        button_Fahrzeug_Waehlen.addActionListener(e -> {
+            Integer id = Fahrzeug_Auswahl_Dialog.zeige_Dialog(this);
+            if (id != null) field_FahrzeugId.setText(String.valueOf(id));
         });
 
-        JButton btnMitarbeiterWaehlen = new JButton();
-        IconLoader.styl_UnicCode_Buttons(btnMitarbeiterWaehlen, "\uD83D\uDD0D");
-        btnMitarbeiterWaehlen.setToolTipText("Mitarbeiter auswählen");
+        JButton button_Mitarbeiter_Waehlen = new JButton();
+        IconLoader.styl_UnicCode_Buttons(button_Mitarbeiter_Waehlen, "\uD83D\uDD0D");
+        button_Mitarbeiter_Waehlen.setToolTipText("Mitarbeiter auswählen");
 
-        btnMitarbeiterWaehlen.addActionListener(e -> {
-            Integer id = MitarbeiterAuswahlDialog.zeigeDialog(this);
-            if (id != null) tfMitarbeiterId.setText(String.valueOf(id));
+        button_Mitarbeiter_Waehlen.addActionListener(e -> {
+            Integer id = Mitarbeiter_Auswahl_Dialog.zeige_Dialog(this);
+            if (id != null) field_MitarbeiterId.setText(String.valueOf(id));
         });
 
         JPanel fahrzeugPanel = new JPanel(new BorderLayout());
-        fahrzeugPanel.add(tfFahrzeugId, BorderLayout.CENTER);
-        fahrzeugPanel.add(btnFahrzeugWaehlen, BorderLayout.EAST);
+        fahrzeugPanel.add(field_FahrzeugId, BorderLayout.CENTER);
+        fahrzeugPanel.add(button_Fahrzeug_Waehlen, BorderLayout.EAST);
 
         JPanel mitarbeiterPanel = new JPanel(new BorderLayout());
-        mitarbeiterPanel.add(tfMitarbeiterId, BorderLayout.CENTER);
-        mitarbeiterPanel.add(btnMitarbeiterWaehlen, BorderLayout.EAST);
+        mitarbeiterPanel.add(field_MitarbeiterId, BorderLayout.CENTER);
+        mitarbeiterPanel.add(button_Mitarbeiter_Waehlen, BorderLayout.EAST);
 
-        JComponent[] fields = { fahrzeugPanel, mitarbeiterPanel, dpVon, dpBis, scrollBemerkung };
+        JComponent[] fields = { fahrzeugPanel, mitarbeiterPanel, date_Picker_Von, date_Picker_Bis, scroll_Text_Bemerkung };
 
         // Style für alle field
-        tfFahrzeugId.setFont(schrift);
-        tfFahrzeugId.setBackground(blau);
-        tfFahrzeugId.setForeground(textFarbe);
+        field_FahrzeugId.setFont(schrift);
+        field_FahrzeugId.setBackground(blau);
+        field_FahrzeugId.setForeground(textFarbe);
 
-        tfMitarbeiterId.setFont(schrift);
-        tfMitarbeiterId.setBackground(blau);
-        tfMitarbeiterId.setForeground(textFarbe);
+        field_MitarbeiterId.setFont(schrift);
+        field_MitarbeiterId.setBackground(blau);
+        field_MitarbeiterId.setForeground(textFarbe);
 
-        dpVon.getComponentDateTextField().setFont(schrift);
-        dpVon.getComponentDateTextField().setBackground(blau);
+        date_Picker_Von.getComponentDateTextField().setFont(schrift);
+        date_Picker_Von.getComponentDateTextField().setBackground(blau);
 
-        dpBis.getComponentDateTextField().setFont(schrift);
-        dpBis.getComponentDateTextField().setBackground(blau);
+        date_Picker_Bis.getComponentDateTextField().setFont(schrift);
+        date_Picker_Bis.getComponentDateTextField().setBackground(blau);
 
-        taBemerkung.setFont(schrift);
-        taBemerkung.setBackground(blau);
-        taBemerkung.setForeground(textFarbe);
+        text_Bemerkung.setFont(schrift);
+        text_Bemerkung.setBackground(blau);
+        text_Bemerkung.setForeground(textFarbe);
 
         // add to form
         for (int i = 0; i < labels.length; i++) {
@@ -113,12 +113,16 @@ public class Zuweisung_Mitarbeiter_Panel extends JPanel {
             formPanel.add(fields[i], gbc);
         }
 
-        // Butto Hinzufügen +
-        JButton button = new JButton("\u2795"); // +
-        IconLoader.styl_UnicCode_Buttons(button, "\u2795");
-        button.setToolTipText("Fahrzeug zuweisen");
-        gbc.gridx = 0; gbc.gridy = labels.length; gbc.gridwidth = 2; gbc.anchor = GridBagConstraints.CENTER;
-        formPanel.add(button, gbc);
+        // Button Hinzufügen +
+        JButton button_Add = new JButton("\u2795"); // +
+        IconLoader.styl_UnicCode_Buttons(button_Add, "\u2795");
+        button_Add.setToolTipText("Fahrzeug zuweisen");
+        gbc.gridx = 0;
+        gbc.gridy = labels.length;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+
+        formPanel.add(button_Add, gbc);
 
         add(formPanel, BorderLayout.NORTH);
 
@@ -133,13 +137,13 @@ public class Zuweisung_Mitarbeiter_Panel extends JPanel {
         add(new JScrollPane(table), BorderLayout.CENTER);
 
         // ---------- Event , Button Hinzufügen ----------
-        button.addActionListener(e -> {
+        button_Add.addActionListener(e -> {
             try {
-                int fahrzeug_Id = Integer.parseInt(tfFahrzeugId.getText().trim());
-                int mitarbeiter_Id = Integer.parseInt(tfMitarbeiterId.getText().trim());
-                LocalDate von = dpVon.getDate();
-                LocalDate bis = dpBis.getDate();
-                String bemerkung = taBemerkung.getText().trim();
+                int fahrzeug_Id = Integer.parseInt(field_FahrzeugId.getText().trim());
+                int mitarbeiter_Id = Integer.parseInt(field_MitarbeiterId.getText().trim());
+                LocalDate von = date_Picker_Von.getDate();
+                LocalDate bis = date_Picker_Bis.getDate();
+                String bemerkung = text_Bemerkung.getText().trim();
 
                 if (FahrzeugService.fahrzeug_Suchen_ID(fahrzeug_Id) == null || MitarbeiterService.finde_Mitarbeiter_Id(mitarbeiter_Id) == null) {
                     JOptionPane.showMessageDialog(this, "Fahrzeug oder Mitarbeiter nicht gefunden!");
@@ -152,7 +156,7 @@ public class Zuweisung_Mitarbeiter_Panel extends JPanel {
                 }
 
                 // Auf Zeitkonflikte mit vorherigen Zuteilungen prüfen
-                if (!ZuweisungService.istFahrzeugVerfuegbar(fahrzeug_Id, von, bis)) {
+                if (!ZuweisungService.verfugbar_Contorl(fahrzeug_Id, von, bis)) {
                     JOptionPane.showMessageDialog(this, "Dieses Fahrzeug ist im gewählten Zeitraum bereits zugewiesen.", "Konflikt", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
@@ -171,11 +175,11 @@ public class Zuweisung_Mitarbeiter_Panel extends JPanel {
                             bis,
                             bemerkung
                     });
-                    tfFahrzeugId.setText("");
-                    tfMitarbeiterId.setText("");
-                    dpVon.clear();
-                    dpBis.clear();
-                    taBemerkung.setText("");
+                    field_FahrzeugId.setText("");
+                    field_MitarbeiterId.setText("");
+                    date_Picker_Von.clear();
+                    date_Picker_Bis.clear();
+                    text_Bemerkung.setText("");
                 } else {
                     JOptionPane.showMessageDialog(this, "Fehler beim Speichern!");
                 }

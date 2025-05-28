@@ -17,17 +17,17 @@ public class ZuweisungDAO {
         boolean result;
 
         if (bisDatum != null) {
-            result = DatabaseUtils.executeUpdate(sqlMitBis, fahrzeugId, mitarbeiterId, Date.valueOf(vonDatum), Date.valueOf(bisDatum), bemerkung
+            result = DatabaseUtils.update_Mit_Parametern(sqlMitBis, fahrzeugId, mitarbeiterId, Date.valueOf(vonDatum), Date.valueOf(bisDatum), bemerkung
             );
         } else {
-            result = DatabaseUtils.executeUpdate(sqlOhneBis, fahrzeugId, mitarbeiterId, Date.valueOf(vonDatum), bemerkung
+            result = DatabaseUtils.update_Mit_Parametern(sqlOhneBis, fahrzeugId, mitarbeiterId, Date.valueOf(vonDatum), bemerkung
             );
         }
 
         // Nach erfolgreicher Registrierung aktualisieren Sie die Fahrzeugtabelle
         if (result) {
             String updateBesitzer = "UPDATE fahrzeug SET besitzer_id = ? WHERE id = ?";
-            return DatabaseUtils.executeUpdate(updateBesitzer, mitarbeiterId, fahrzeugId);
+            return DatabaseUtils.update_Mit_Parametern(updateBesitzer, mitarbeiterId, fahrzeugId);
         }
 
         return false;
@@ -38,7 +38,7 @@ public class ZuweisungDAO {
         String sql_Load_all = "SELECT fahrzeug_id, mitarbeiter_id, von_datum, bis_datum, bemerkung FROM zuweisung";
         java.util.List<Object[]> datenListe = new java.util.ArrayList<>();
 
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_Load_all)) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_Load_all)) {
             while (resultSet != null && resultSet.next()) {
                 int fahrzeugId = resultSet.getInt("fahrzeug_id");
                 int mitarbeiterId = resultSet.getInt("mitarbeiter_id");
@@ -59,7 +59,7 @@ public class ZuweisungDAO {
     //Anzahl aller zugewiesenen
     public static int anzahl_Zuweizung() {
         String sql_Anzahl = "SELECT COUNT(*) AS anzahl FROM zuweisung";
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_Anzahl)) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_Anzahl)) {
             if (resultSet != null && resultSet.next()) {
                 return resultSet.getInt("anzahl");
             }
@@ -72,7 +72,7 @@ public class ZuweisungDAO {
     // Kontroel Fahrzeug verfügbar ist oder nein
     public static boolean fahrzeug_Frei(int fahrzeugId, LocalDate von, LocalDate bis) {
         String sql_Fahrzeug_Frei = "SELECT COUNT(*) FROM zuweisung WHERE fahrzeug_id = ? AND (? <= bis_datum AND ? >= von_datum)";
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_Fahrzeug_Frei, fahrzeugId, von, bis)) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_Fahrzeug_Frei, fahrzeugId, von, bis)) {
             if (resultSet != null && resultSet.next()) {
                 return resultSet.getInt(1) == 0; // dass es keine Störungen gibt
             }

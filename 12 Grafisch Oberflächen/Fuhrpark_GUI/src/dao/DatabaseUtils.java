@@ -6,13 +6,16 @@ import java.sql.*;
 public class DatabaseUtils {
 
     // Führt ein SQL-Update (INSERT, UPDATE, DELETE) mit Parametern aus
-    public static boolean executeUpdate(String sql, Object... params) {
+
+   // Führen alle Arten von SQL-Anweisungen aus, die Daten ändern.
+
+    public static boolean update_Mit_Parametern(String sql, Object... params) {
         try (Connection fuhrpark_db_connection = DatabaseManager.getMyFuhrpark_DB_Connection();
              PreparedStatement connectionStatement = fuhrpark_db_connection.prepareStatement(sql)) {
             for (int i = 0; i < params.length; i++) {
                 connectionStatement.setObject(i + 1, params[i]);
             }
-            return connectionStatement.executeUpdate() > 0;
+            return connectionStatement.executeUpdate() > 0; // Wenn mindestens 1 Zeile betroffen ist(true)
         } catch (SQLException error) {
             System.out.println("SQL-Update-Problem: " + error.getMessage());
             return false;
@@ -21,7 +24,7 @@ public class DatabaseUtils {
 
 
     // Führt eine vorbereitete SELECT-Abfrage mit Parametern aus (Suchen)
-    public static ResultSet executePreparedSelect(String sql, Object... params) {
+    public static ResultSet suche_Mit_Parametern(String sql, Object... params) {
         try {
             Connection fuhrpark_db_connection = DatabaseManager.getMyFuhrpark_DB_Connection();
             PreparedStatement connectionStatement = fuhrpark_db_connection.prepareStatement(sql);
@@ -36,18 +39,18 @@ public class DatabaseUtils {
     }
 
     // Führt ein INSERT mit Rückgabe des automatisch generierten Schlüssels aus
-    public static int executeInsertWithGeneratedKey(String sql, Object... params) {
+    public static int insert_Bekomme_ID(String sql, Object... params) {
         try (Connection fuhrpark_db_connection = DatabaseManager.getMyFuhrpark_DB_Connection();
              PreparedStatement connectionStatement = fuhrpark_db_connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             for (int i = 0; i < params.length; i++) {
                 connectionStatement.setObject(i + 1, params[i]);
             }
             connectionStatement.executeUpdate();
-            try (ResultSet rs = connectionStatement.getGeneratedKeys()) {
-                if (rs.next()) return rs.getInt(1);
+            try (ResultSet resultSet = connectionStatement.getGeneratedKeys()) {
+                if (resultSet.next()) return resultSet.getInt(1);
             }
-        } catch (SQLException e) {
-            System.out.println("INSERT mit Key Fehler: " + e.getMessage());
+        } catch (SQLException error) {
+            System.out.println("INSERT mit Key Fehler: " + error.getMessage());
         }
         return -1;
     }

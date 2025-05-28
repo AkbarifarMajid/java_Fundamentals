@@ -10,7 +10,7 @@ public class BenutzerDAO {
      //Überprüfung der Richtigkeit von Benutzername und Passwort in der Tabelle benutzer_erweitert
     public static boolean bnutzer_Password_Control(String benutzername, String passwort) {
         String sql = "SELECT * FROM benutzer_erweitert WHERE benutzername = ? AND passwort = ?";
-        ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql, benutzername, passwort);
+        ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql, benutzername, passwort);
 
         if (resultSet == null) {
             return false;
@@ -37,6 +37,6 @@ public class BenutzerDAO {
                 "(vorname, nachname, telefon, email, geschlecht, benutzername, passwort) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        return DatabaseUtils.executeUpdate(sql, vorname, nachname, telefon, email, geschlecht, benutzername, passwort);
+        return DatabaseUtils.update_Mit_Parametern(sql, vorname, nachname, telefon, email, geschlecht, benutzername, passwort);
     }// End benutzerErweitertSpeichern
 }

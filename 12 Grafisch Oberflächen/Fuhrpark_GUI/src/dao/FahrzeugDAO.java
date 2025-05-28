@@ -11,7 +11,7 @@ public class FahrzeugDAO {
     // Fahrzeug hinzufügen
     public static void fahrzeug_einfuegen(Fahrzeug fahrzeug, String typ) {
         String sql_einguegen = "INSERT INTO fahrzeug (typ, hersteller, modell, baujahr, kennzeichen) VALUES (?, ?, ?, ?, ?)";
-        int fahrzeugId = DatabaseUtils.executeInsertWithGeneratedKey(
+        int fahrzeugId = DatabaseUtils.insert_Bekomme_ID(
                 sql_einguegen, typ, fahrzeug.getHersteller(), fahrzeug.getModell(), fahrzeug.getBaujahr(), fahrzeug.getKennzeichen()
         );
 
@@ -32,7 +32,7 @@ public class FahrzeugDAO {
         ArrayList<Fahrzeug> liste_Fahrzeug = new ArrayList<>();
         String sql_all_F = "SELECT * FROM fahrzeug";
 
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_all_F)) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_all_F)) {
             while (resultSet != null && resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String typ = resultSet.getString("typ");
@@ -61,7 +61,7 @@ public class FahrzeugDAO {
     public static Fahrzeug find_Fahrzeug_Id(int id) {
         String sql_Find = "SELECT * FROM fahrzeug WHERE id = ?";
 
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_Find, id)) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_Find, id)) {
             if (resultSet == null || !resultSet.next()) return null;
 
             String typ = resultSet.getString("typ");
@@ -90,17 +90,17 @@ public class FahrzeugDAO {
 
     //Fahrzeug Löschen
     public static boolean loeschen_Fahrzeug(int id) {
-        return DatabaseUtils.executeUpdate("DELETE FROM fahrzeug WHERE id = ?", id);
+        return DatabaseUtils.update_Mit_Parametern("DELETE FROM fahrzeug WHERE id = ?", id);
     } //End loeschen_Fahrzeug
 
     //Karfstoff Fahrzeug Aktualisieren
     public static boolean kraftstoff_Aktualisieren(int id, double liter) {
-        return DatabaseUtils.executeUpdate("UPDATE fahrzeug SET kraftstoff_Fahrzeug = kraftstoff_Fahrzeug + ? WHERE id = ?", liter, id);
+        return DatabaseUtils.update_Mit_Parametern("UPDATE fahrzeug SET kraftstoff_Fahrzeug = kraftstoff_Fahrzeug + ? WHERE id = ?", liter, id);
     } // End kraftstoff_Aktualisieren
 
     //Fahrzeug information Bearbeiten
     public static boolean bearbeiten_Fahrzeug(Fahrzeug fahrzeug) {
-        boolean mainSuccess = DatabaseUtils.executeUpdate(
+        boolean mainSuccess = DatabaseUtils.update_Mit_Parametern(
                 "UPDATE fahrzeug SET hersteller = ?, modell = ?, baujahr = ?, kennzeichen = ? WHERE id = ?",
                 fahrzeug.getHersteller(), fahrzeug.getModell(), fahrzeug.getBaujahr(), fahrzeug.getKennzeichen(), fahrzeug.getId());
 
@@ -118,7 +118,7 @@ public class FahrzeugDAO {
     //Anzahl alle Fahrzeug
     public static int anzahl_Fahrzeuge() {
         String sql_anzahl = "SELECT COUNT(*) AS anzahl FROM fahrzeug";
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_anzahl)) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_anzahl)) {
             if (resultSet != null && resultSet.next()) {
                 return resultSet.getInt("anzahl");
             }
@@ -130,13 +130,13 @@ public class FahrzeugDAO {
 
     public static Integer get_Aktueller_BesitzerId(int fahrzeugId) {
         String sql_BesitzerID_Aktuali = "SELECT besitzer_id FROM fahrzeug WHERE id = ?";
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_BesitzerID_Aktuali, fahrzeugId)) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_BesitzerID_Aktuali, fahrzeugId)) {
             if (resultSet != null && resultSet.next()) {
                 int id = resultSet.getInt("besitzer_id");
                 return resultSet.wasNull() ? null : id;
             }
-        } catch (SQLException e) {
-            System.out.println("bei getAktuellerBesitzerId gibt es Problem(): " + e.getMessage());
+        } catch (SQLException error) {
+            System.out.println("bei getAktuellerBesitzerId gibt es Problem(): " + error.getMessage());
         }
         return null;
     }// End get_Aktueller_BesitzerId

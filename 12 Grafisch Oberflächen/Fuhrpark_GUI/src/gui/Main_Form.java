@@ -29,7 +29,7 @@ public class Main_Form extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                progran_schliessen();
+                programm_schliessen();
             }
         });
 
@@ -68,7 +68,7 @@ public class Main_Form extends JFrame {
         menu_Beenden.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                progran_schliessen();
+                programm_schliessen();
             }
         });
 
@@ -145,7 +145,7 @@ public class Main_Form extends JFrame {
         haupt_Panel_Main.repaint();
     }
 
-    private void progran_schliessen() {
+    public void programm_schliessen() {
         int jaNein = JOptionPane.showConfirmDialog(this, "Schließen Sie das Programm?", "Beenden", JOptionPane.YES_NO_OPTION);
         if (jaNein == JOptionPane.YES_OPTION) {
             System.exit(0);

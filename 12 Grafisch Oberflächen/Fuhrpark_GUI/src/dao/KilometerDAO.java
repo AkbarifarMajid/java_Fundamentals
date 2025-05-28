@@ -3,7 +3,7 @@ package dao;
 import java.time.LocalDate;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 public class KilometerDAO {
 
     public static boolean hinzufuegenKilometer(int fahrzeugId, double startKm, double endKm) {
@@ -16,7 +16,7 @@ public class KilometerDAO {
         //  Insert in kilometer_log
         String insertSQL = "INSERT INTO kilometer_log (fahrzeug_id, start_km, end_km, differenz, datum) VALUES (?, ?, ?, ?, ?)";
        // System.out.println("Update-Fahrzeug-Kilometer ausgeführt mit Differenz = " + differenz);
-        boolean inserted = DatabaseUtils.executeUpdate(insertSQL, fahrzeugId, startKm, endKm, differenz,
+        boolean inserted = DatabaseUtils.update_Mit_Parametern(insertSQL, fahrzeugId, startKm, endKm, differenz,
                 java.sql.Date.valueOf(LocalDate.now())
         );
 
@@ -28,7 +28,7 @@ public class KilometerDAO {
         //  Update der Gesamt-Kilometer im Fahrzeug
         String updateSQL = "UPDATE fahrzeug SET kilometer_Fahrzeug = kilometer_Fahrzeug + ? WHERE id = ?";
 
-        boolean updated = DatabaseUtils.executeUpdate(updateSQL, differenz, fahrzeugId);
+        boolean updated = DatabaseUtils.update_Mit_Parametern(updateSQL, differenz, fahrzeugId);
      //   System.out.println("Update-Fahrzeug-Kilometer ausgeführt mit Differenz = " + differenz);
 
         if (!updated) {
@@ -42,7 +42,7 @@ public class KilometerDAO {
 
     public static int berechneGesamtKilometer() {
         String sql = "SELECT SUM(differenz) AS gesamt FROM kilometer_log";
-        try (ResultSet rs = DatabaseUtils.executePreparedSelect(sql)) {
+        try (ResultSet rs = DatabaseUtils.suche_Mit_Parametern(sql)) {
             if (rs != null && rs.next()) {
                 return rs.getInt("gesamt");
             }

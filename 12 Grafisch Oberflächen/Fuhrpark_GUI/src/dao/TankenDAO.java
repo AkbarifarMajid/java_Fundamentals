@@ -10,7 +10,7 @@ public class TankenDAO {
     // Neu Tanken Hinzufügen
     public static boolean tanken_Hinzufuegen(int fahrzeugId, double liter) {
         String insertSQL = "INSERT INTO tanken_log (fahrzeug_id, liter, datum) VALUES (?, ?, ?)";
-        boolean result = DatabaseUtils.executeUpdate(insertSQL, fahrzeugId, liter,
+        boolean result = DatabaseUtils.update_Mit_Parametern(insertSQL, fahrzeugId, liter,
                 java.sql.Date.valueOf(java.time.LocalDate.now())
         );
 
@@ -27,7 +27,7 @@ public class TankenDAO {
     // Gesamte Tanken Berechnen
     public static double gesamt_Tanken(int fahrzeugId) {
         String sql_Gesamt = "SELECT SUM(liter) AS gesamt FROM tanken_log WHERE fahrzeug_id = ?";
-        try (ResultSet resultSet = DatabaseUtils.executePreparedSelect(sql_Gesamt, fahrzeugId)) {
+        try (ResultSet resultSet = DatabaseUtils.suche_Mit_Parametern(sql_Gesamt, fahrzeugId)) {
             if (resultSet != null && resultSet.next()) {
                 return resultSet.getDouble("gesamt");
             }
